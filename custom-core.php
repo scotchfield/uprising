@@ -23,6 +23,19 @@ define( 'CR_CHARACTER_MONEY',     3 );
 define( 'CR_CHARACTER_TIP',       4 );
 define( 'CR_CURRENT_ZONE',        5 );
 
+define( 'CR_CHARACTER_HEALTH',         50 );
+define( 'CR_CHARACTER_HEALTH_MAX',     51 );
+
+define( 'CR_CHARACTER_STR',       100 );
+define( 'CR_CHARACTER_DEX',       101 );
+define( 'CR_CHARACTER_INT',       102 );
+define( 'CR_CHARACTER_CON',       103 );
+define( 'CR_CHARACTER_APP',       104 );
+define( 'CR_CHARACTER_POW',       105 );
+define( 'CR_CHARACTER_EDU',       106 );
+
+
+
 function cr_login() {
     global $character;
 
@@ -123,7 +136,30 @@ function cr_header() {
 '      </div>',
 '    </div>',
 '',
-'    <div class="container">'
+'    <div class="container">',
+'      <div class="row">',
+'        <div class="col-sm-3 col-md-3 sidebar">',
+'          <ul class="nav nav-sidebar">',
+'            <li class="active"><a href="#">Overview</a></li>',
+'            <li><a href="#">Profile</a></li>',
+'            <li><a href="#">Inventory</a></li>',
+'            <li><a href="#">City</a></li>',
+'          </ul>',
+'          <ul class="nav nav-sidebar">',
+'            <li><a href="">Commit a Crime</a></li>',
+'            <li><a href="">Career</a></li>',
+'            <li><a href="">Fitness</a></li>',
+'            <li><a href="">Education</a></li>',
+'            <li><a href="">Casino</a></li>',
+'            <li><a href="">Jail</a></li>',
+'          </ul>',
+/*'          <ul class="nav nav-sidebar">',
+'            <li><a href="">Nav item again</a></li>',
+'            <li><a href="">One more nav</a></li>',
+'            <li><a href="">Another nav item</a></li>',
+'          </ul>',*/
+'        </div>',
+'        <div class="col-sm-9 main">'
         );
 
     echo join( "\n", $obj );
@@ -134,7 +170,8 @@ function cr_footer() {
 
     $footer_text = '';
 
-    echo '    </div>';
+    echo '      </div>';
+    echo '    </div></div>';
     echo '    <div id="footer"><div class="container">';
     echo '<p class="text-muted">' . $footer_text . '</p>';
     echo '    </div></div>';
