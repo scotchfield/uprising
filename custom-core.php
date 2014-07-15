@@ -11,7 +11,7 @@ require( GAME_CUSTOM_PATH . 'zone.php' );
 
 $custom_start_page = 'title.php';
 
-$custom_default_action = 'map';
+$custom_default_action = 'zone';
 
 
 define( 'cr_meta_type_character',    1 );
@@ -26,6 +26,9 @@ define( 'CR_CURRENT_ZONE',        5 );
 define( 'CR_CHARACTER_HEALTH',         50 );
 define( 'CR_CHARACTER_HEALTH_MAX',     51 );
 
+define( 'CR_CHARACTER_STAMINA',             60 );
+define( 'CR_CHARACTER_STAMINA_TIMESTAMP',   61 );
+
 define( 'CR_CHARACTER_STR',       100 );
 define( 'CR_CHARACTER_DEX',       101 );
 define( 'CR_CHARACTER_INT',       102 );
@@ -34,6 +37,7 @@ define( 'CR_CHARACTER_APP',       104 );
 define( 'CR_CHARACTER_POW',       105 );
 define( 'CR_CHARACTER_EDU',       106 );
 
+define( 'sc_game_meta_employers',   1 );
 
 
 function cr_login() {
@@ -45,6 +49,10 @@ function cr_login() {
                            CR_CHARACTER_NAME );
     ensure_character_meta( $character[ 'id' ], cr_meta_type_character,
                            CR_CHARACTER_MONEY );
+    ensure_character_meta( $character[ 'id' ], cr_meta_type_character,
+                           CR_CHARACTER_STAMINA );
+    ensure_character_meta( $character[ 'id' ], cr_meta_type_character,
+                           CR_CHARACTER_STAMINA_TIMESTAMP );
 
     // TODO: add ensure_character_meta_list or something equivalent.
     //       need to check all of the defines, but each one is at least one
@@ -123,8 +131,6 @@ function cr_header() {
                   ?><b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="?action=profile">Profile</a></li>
-                <li><a href="?action=questlog">Quest Log</a></li>
-                <li><a href="?action=mech">Active Mech</a></li>
                 <li><a href="?action=inventory">Inventory</a></li>
                 <li class="divider"></li>
                 <li><a href="?action=dashboard">Dashboard</a></li>
@@ -155,15 +161,15 @@ function cr_header() {
             </li>
             <li><a href="?action=profile">Profile</a></li>
             <li><a href="?action=inventory">Inventory</a></li>
-            <li><a href="#">City</a></li>
+            <li><a href="?action=zone&zone_tag=map">City</a></li>
           </ul>
           <ul class="nav nav-sidebar">
             <li><a href="?action=zone&zone_tag=crime">Commit a Crime</a></li>
             <li><a href="?action=zone&zone_tag=career">Career</a></li>
-            <li><a href="">Fitness</a></li>
-            <li><a href="">Education</a></li>
-            <li><a href="">Casino</a></li>
-            <li><a href="">Jail</a></li>
+            <li><a href="?action=zone&zone_tag=fitness">Fitness</a></li>
+            <li><a href="?action=zone&zone_tag=education">Education</a></li>
+            <li><a href="?action=zone&zone_tag=casino">Casino</a></li>
+            <li><a href="?action=zone&zone_tag=jail">Jail</a></li>
           </ul>
         </div>
         <div class="col-sm-10 col-sm-offset-2 main">
@@ -261,3 +267,30 @@ function cr_validate_user( $args ) {
 }
 
 add_action( 'validate_user', 'cr_validate_user' );
+
+
+
+function cr_regen_stamina() {
+    global $character;
+
+    if ( FALSE == $character ) {
+        return;
+    }
+
+    $stamina = floatval( character_meta(
+        cr_meta_type_character, CR_CHARACTER_STAMINA ) );
+
+    // todo: support higher max stamina as meta later
+    if ( $stamina < 100 ) {
+        $stamina_seconds = time() - intval( character_meta(
+            cr_meta_type_character, CR_CHARACTER_STAMINA_TIMESTAMP ) );
+        $stamina_gain = $stamina_seconds / 60.0;
+        update_character_meta( $character[ 'id' ], cr_meta_type_character,
+            CR_CHARACTER_STAMINA, min( 100, $stamina + $stamina_gain ) );
+    }
+
+    update_character_meta( $character[ 'id' ], cr_meta_type_character,
+        CR_CHARACTER_STAMINA_TIMESTAMP, time() );
+}
+
+add_action( 'character_load', 'cr_regen_stamina' );

@@ -20,6 +20,9 @@ function cr_profile_content() {
       <dt>Money</dt>
       <dd><?php echo character_meta(
           cr_meta_type_character, CR_CHARACTER_MONEY ); ?>&nbsp;</dd>
+      <dt>Stamina</dt>
+      <dd><?php echo intval( character_meta(
+          cr_meta_type_character, CR_CHARACTER_STAMINA ) ); ?> / 100</dd>
     </dl>
 
     <h3>Achievements</h3>
