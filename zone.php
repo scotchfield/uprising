@@ -48,10 +48,10 @@ function cr_zone_content() {
     }
 
     $zone = get_zone( $zone_id );
-    $zone_transitions = get_zone_transitions( $zone_id );
+    //$zone_transitions = get_zone_transitions( $zone_id );
     $zone[ 'meta' ] = explode_meta( $zone[ 'zone_meta' ] );
 
-    $npc_obj = array();
+    /*$npc_obj = array();
     if ( isset( $zone[ 'meta' ][ 'npcs' ] ) ) {
         $npc_id_obj = explode( ',', $zone[ 'meta' ][ 'npcs' ] );
         foreach ( $npc_id_obj as $npc_id ) {
@@ -84,12 +84,12 @@ function cr_zone_content() {
     }
     echo '</ul>';
 
-    echo( '</div></div>' );
+    echo( '</div></div>' );*/
 
     if ( ! strcmp( 'home', $zone[ 'zone_type' ] ) ) {
         echo( '<h2>Home Zone</h2>' );
     } else if ( ! strcmp( 'career', $zone[ 'zone_type' ] ) ) {
-        echo( '<h2>Career Zone</h2>' );
+        cr_zone_career();
     } else if ( ! strcmp( 'store', $zone[ 'zone_type' ] ) ) {
         $item_obj = get_zone_items_full( $zone[ 'id' ] );
 
@@ -141,3 +141,11 @@ function cr_zone_content() {
 }
 
 add_action( 'do_page_content', 'cr_zone_content' );
+
+function cr_zone_career() {
+?><h2>Career</h2>
+<p class="lead">One of the easiest ways to make money is to find a reputable
+career.  As you progress through the company ranks, you'll make more money
+and command more respect.</p>
+<?php
+}
