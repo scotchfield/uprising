@@ -86,40 +86,10 @@ function cr_zone_content() {
 
     echo( '</div></div>' );
 
-    if ( ! strcmp( 'combat', $zone[ 'zone_type' ] ) ) {
-        if ( ! strcmp( 'titanrift', $zone[ 'zone_tag' ] ) ) {
-?>
-<div class="row">
-  <div class="col-md-12 text-center">
-    <img src="<?php echo( GAME_CUSTOM_STYLE_URL );
-         ?>titanrift_atowers.png" width="150">
-    <img src="<?php echo( GAME_CUSTOM_STYLE_URL );
-         ?>titanrift_unknown.png" width="150">
-    <img src="<?php echo( GAME_CUSTOM_STYLE_URL );
-         ?>titanrift_unknown.png" width="150">
-  </div>
-  <div class="col-md-12 text-center">
-    <img src="<?php echo( GAME_CUSTOM_STYLE_URL );
-         ?>titanrift_unknown.png" width="150">
-    <img src="<?php echo( GAME_CUSTOM_STYLE_URL );
-         ?>titanrift_core.png" width="150">
-    <img src="<?php echo( GAME_CUSTOM_STYLE_URL );
-         ?>titanrift_unknown.png" width="150">
-  </div>
-  <div class="col-md-12 text-center">
-    <img src="<?php echo( GAME_CUSTOM_STYLE_URL );
-         ?>titanrift_unknown.png" width="150">
-    <img src="<?php echo( GAME_CUSTOM_STYLE_URL );
-         ?>titanrift_unknown.png" width="150">
-    <img src="<?php echo( GAME_CUSTOM_STYLE_URL );
-         ?>titanrift_unknown.png" width="150">
-  </div>
-</div>
-<?php
-        }
-        echo '<h3 class="text-center">' .
-             '<a href="game-setting.php?setting=start_combat">' .
-             'Start combat!</a></h3>';
+    if ( ! strcmp( 'home', $zone[ 'zone_type' ] ) ) {
+        echo( '<h2>Home Zone</h2>' );
+    } else if ( ! strcmp( 'career', $zone[ 'zone_type' ] ) ) {
+        echo( '<h2>Career Zone</h2>' );
     } else if ( ! strcmp( 'store', $zone[ 'zone_type' ] ) ) {
         $item_obj = get_zone_items_full( $zone[ 'id' ] );
 
