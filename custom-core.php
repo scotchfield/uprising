@@ -45,6 +45,10 @@ function cr_login() {
                            CR_CHARACTER_NAME );
     ensure_character_meta( $character[ 'id' ], cr_meta_type_character,
                            CR_CHARACTER_MONEY );
+
+    // TODO: add ensure_character_meta_list or something equivalent.
+    //       need to check all of the defines, but each one is at least one
+    //       db hit.
 }
 
 add_action( 'select_character', 'cr_login' );
@@ -146,14 +150,16 @@ function cr_header() {
 ?>
         <div class="col-sm-2 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Inventory</a></li>
+            <li class="active">
+              <a href="?action=zone&zone_tag=home">My Home</a>
+            </li>
+            <li><a href="?action=profile">Profile</a></li>
+            <li><a href="?action=inventory">Inventory</a></li>
             <li><a href="#">City</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><a href="">Commit a Crime</a></li>
-            <li><a href="">Career</a></li>
+            <li><a href="?action=zone&zone_tag=crime">Commit a Crime</a></li>
+            <li><a href="?action=zone&zone_tag=career">Career</a></li>
             <li><a href="">Fitness</a></li>
             <li><a href="">Education</a></li>
             <li><a href="">Casino</a></li>
