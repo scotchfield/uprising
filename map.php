@@ -1,9 +1,9 @@
 <?
 
 function cr_map_print() {
-    global $game, $user, $character;
+    global $user, $character;
 
-    if ( strcmp( 'map', $game->get_action() ) ) {
+    if ( strcmp( 'map', game_get_action() ) ) {
         return;
     }
 

@@ -3,7 +3,7 @@
 define( 'TUTORIAL_STATUS_BIT_COMPLETE', 0 );
 
 function cr_tutorial_check() {
-    global $game, $character;
+    global $character;
 
     if ( FALSE == $character ) {
         return;
@@ -11,15 +11,15 @@ function cr_tutorial_check() {
 
     $t = character_meta( cr_meta_type_character, CR_TUTORIAL_STATUS );
     if ( ! get_bit( $t, TUTORIAL_STATUS_BIT_COMPLETE ) ) {
-        $game->set_action( 'tutorial' );
+        game_set_action( 'tutorial' );
     }
 }
 
 add_action( 'action_set', 'cr_tutorial_check' );
 
 function cr_tutorial_print() {
-    global $game, $character;
-    if ( ! strcmp( 'tutorial', $game->get_action() ) ) {
+    global $character;
+    if ( ! strcmp( 'tutorial', game_get_action() ) ) {
         $t = character_meta( cr_meta_type_character, CR_TUTORIAL_STATUS );
 
         if ( ! get_bit( $t, 1 ) ) {

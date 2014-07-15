@@ -38,6 +38,7 @@ define( 'CR_CHARACTER_POW',       105 );
 define( 'CR_CHARACTER_EDU',       106 );
 
 define( 'sc_game_meta_employers',   1 );
+define( 'sc_game_meta_jobs',        2 );
 
 
 function cr_login() {
@@ -62,7 +63,7 @@ function cr_login() {
 add_action( 'select_character', 'cr_login' );
 
 function cr_header() {
-    global $game, $user, $character;
+    global $user, $character;
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -70,7 +71,7 @@ function cr_header() {
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php echo( GAME_NAME ); ?> (<?php echo( $game->get_action() );
+    <title><?php echo( GAME_NAME ); ?> (<?php echo( game_get_action() );
         ?>)</title>
     <link rel="stylesheet" href="<?php echo( GAME_URL );
         ?>style/bootstrap.min.css">
@@ -178,7 +179,7 @@ function cr_header() {
 }
 
 function cr_footer() {
-    global $game, $character;
+    global $character;
 
     if ( FALSE != $character ) {
         echo "      </div>\n";
@@ -218,9 +219,7 @@ function cr_tip_print() {
 add_action_priority( 'do_page_content', 'cr_tip_print' );
 
 function cr_about() {
-    global $game;
-
-    if ( strcmp( 'about', $game->get_action() ) ) {
+    if ( strcmp( 'about', game_get_action() ) ) {
        return;
     }
 
@@ -228,9 +227,7 @@ function cr_about() {
 }
 
 function cr_contact() {
-    global $game;
-
-    if ( strcmp( 'contact', $game->get_action() ) ) {
+    if ( strcmp( 'contact', game_get_action() ) ) {
        return;
     }
 

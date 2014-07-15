@@ -1,9 +1,9 @@
 <?php
 
 function cr_zone_set() {
-    global $game, $character;
+    global $character;
 
-    if ( strcmp( 'zone', $game->get_action() ) ) {
+    if ( strcmp( 'zone', game_get_action() ) ) {
         return;
     }
 
@@ -36,9 +36,9 @@ function cr_zone_set() {
 add_action( 'action_set', 'cr_zone_set' );
 
 function cr_zone_content() {
-    global $game, $character;
+    global $character;
 
-    if ( strcmp( 'zone', $game->get_action() ) ) {
+    if ( strcmp( 'zone', game_get_action() ) ) {
        return;
     }
 

@@ -1,9 +1,9 @@
 <?php
 
 function cr_inventory_content() {
-    global $game, $character;
+    global $character;
 
-    if ( strcmp( 'inventory', $game->get_action() ) ) {
+    if ( strcmp( 'inventory', game_get_action() ) ) {
        return;
     }
 

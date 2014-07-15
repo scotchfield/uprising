@@ -1,10 +1,10 @@
 <?php
 
 function cr_select_check() {
-    global $game, $character;
+    global $character;
 
     if ( FALSE == $character ) {
-        $game->set_action( 'select' );
+        game_set_action( 'select' );
     }
 }
 
@@ -12,9 +12,9 @@ add_action( 'action_set', 'cr_select_check' );
 
 
 function cr_select_print() {
-    global $game, $user;
+    global $user;
 
-    if ( strcmp( 'select', $game->get_action() ) ) {
+    if ( strcmp( 'select', game_get_action() ) ) {
        return;
     }
 

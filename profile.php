@@ -1,9 +1,9 @@
 <?php
 
 function cr_profile_content() {
-    global $game, $character;
+    global $character;
 
-    if ( strcmp( 'profile', $game->get_action() ) ) {
+    if ( strcmp( 'profile', game_get_action() ) ) {
        return;
     }
 
