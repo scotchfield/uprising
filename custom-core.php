@@ -37,6 +37,9 @@ define( 'CR_CHARACTER_APP',       104 );
 define( 'CR_CHARACTER_POW',       105 );
 define( 'CR_CHARACTER_EDU',       106 );
 
+define( 'CR_CHARACTER_JOB_ID',    150 );
+
+
 define( 'sc_game_meta_employers',   1 );
 define( 'sc_game_meta_jobs',        2 );
 
@@ -44,8 +47,9 @@ define( 'sc_game_meta_jobs',        2 );
 function cr_login() {
     global $character;
 
-    ensure_character_meta( $character[ 'id' ], cr_meta_type_character,
-                           CR_TUTORIAL_STATUS );
+    ensure_character_meta_keygroup( $character[ 'id' ], cr_meta_type_character,
+        array( CR_TUTORIAL_STATUS, CR_CHARACTER_JOB_ID ) );
+
     ensure_character_meta( $character[ 'id' ], cr_meta_type_character,
                            CR_CHARACTER_NAME );
     ensure_character_meta( $character[ 'id' ], cr_meta_type_character,
@@ -162,7 +166,6 @@ function cr_header() {
             </li>
             <li><a href="?action=profile">Profile</a></li>
             <li><a href="?action=inventory">Inventory</a></li>
-            <li><a href="?action=zone&zone_tag=map">City</a></li>
           </ul>
           <ul class="nav nav-sidebar">
             <li><a href="?action=zone&zone_tag=crime">Commit a Crime</a></li>

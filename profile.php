@@ -23,6 +23,9 @@ function cr_profile_content() {
       <dt>Stamina</dt>
       <dd><?php echo intval( character_meta(
           cr_meta_type_character, CR_CHARACTER_STAMINA ) ); ?> / 100</dd>
+      <dt>Career</dt>
+      <dd><?php echo character_meta(
+          cr_meta_type_character, CR_CHARACTER_JOB_ID ); ?></dd>
     </dl>
 
     <h3>Achievements</h3>
