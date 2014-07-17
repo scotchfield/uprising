@@ -8,10 +8,10 @@ function cr_zone_career() {
     $job = FALSE;
 
     if ( 0 != $job_id ) {
-        $job = get_game_meta( sc_game_meta_jobs, $job_id );
+        $job = get_game_meta( cr_game_meta_jobs, $job_id );
         $job[ 'meta_value' ] = explode_meta( $job[ 'meta_value' ] );
         $employer = get_game_meta(
-            sc_game_meta_employers, $job[ 'meta_value' ][ 'employer' ] );
+            cr_game_meta_employers, $job[ 'meta_value' ][ 'employer' ] );
     }
 ?>
 <div class="row">
@@ -40,8 +40,8 @@ earn additional bonuses, and command more respect.</p>
         /*echo( '<h3>You are unemployed! You can find an entry-level career ' .
               'below.</h3>' );
 
-        $employer_obj = get_game_meta_keytype( sc_game_meta_employers );
-        $job_obj = get_game_meta_keytype( sc_game_meta_jobs );
+        $employer_obj = get_game_meta_keytype( cr_game_meta_employers );
+        $job_obj = get_game_meta_keytype( cr_game_meta_jobs );
 
         foreach ( $job_obj as $k => $job ) {
             $job_obj[ $k ][ 'meta_value' ] = explode_meta(
@@ -60,10 +60,10 @@ earn additional bonuses, and command more respect.</p>
             }
         }*/
     } else {
-        $job = get_game_meta( sc_game_meta_jobs, $job_id );
+        $job = get_game_meta( cr_game_meta_jobs, $job_id );
         $job[ 'meta_value' ] = explode_meta( $job[ 'meta_value' ] );
         $employer = get_game_meta(
-            sc_game_meta_employers, $job[ 'meta_value' ][ 'employer' ] );
+            cr_game_meta_employers, $job[ 'meta_value' ][ 'employer' ] );
 
         echo( '<h4>Current job: <b>' . $job[ 'meta_value' ][ 'title' ] .
               '</b> at <b>' . $employer[ 'meta_value' ] . '</b> (Tier ' .
@@ -107,7 +107,7 @@ function cr_accept_career( $args ) {
         CR_CHARACTER_JOB_ID ] );
 
     $new_job_id = intval( $args[ 'career_id' ] );
-    $new_job = get_game_meta( sc_game_meta_jobs, $new_job_id );
+    $new_job = get_game_meta( cr_game_meta_jobs, $new_job_id );
     if ( FALSE == $new_job ) {
         return;
     }
@@ -118,7 +118,7 @@ function cr_accept_career( $args ) {
         update_character_meta( $character[ 'id' ], cr_meta_type_character,
             CR_CHARACTER_JOB_ID, $new_job_id );
     } else if ( 0 != $job_id ) {
-        $job = get_game_meta( sc_game_meta_jobs, $job_id );
+        $job = get_game_meta( cr_game_meta_jobs, $job_id );
         $job[ 'meta_value' ] = explode_meta( $job[ 'meta_value' ] );
 
         if ( $new_job[ 'meta_value' ][ 'tier' ] ==

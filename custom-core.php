@@ -38,31 +38,29 @@ define( 'CR_CHARACTER_APP',       104 );
 define( 'CR_CHARACTER_POW',       105 );
 define( 'CR_CHARACTER_EDU',       106 );
 
-define( 'CR_CHARACTER_JOB_ID',    150 );
+define( 'CR_CHARACTER_JOB_ID',         150 );
+define( 'CR_CHARACTER_JOB_HIRED',      151 );
+define( 'CR_CHARACTER_JOB_LASTPAID',   152 );
 
-
-define( 'sc_game_meta_employers',   1 );
-define( 'sc_game_meta_jobs',        2 );
+define( 'cr_game_meta_employers',   1 );
+define( 'cr_game_meta_jobs',        2 );
 
 
 function cr_login() {
     global $character;
 
-    ensure_character_meta_keygroup( $character[ 'id' ], cr_meta_type_character,
-        array( CR_TUTORIAL_STATUS, CR_CHARACTER_JOB_ID ) );
-
-    ensure_character_meta( $character[ 'id' ], cr_meta_type_character,
-                           CR_CHARACTER_NAME );
-    ensure_character_meta( $character[ 'id' ], cr_meta_type_character,
-                           CR_CHARACTER_MONEY );
-    ensure_character_meta( $character[ 'id' ], cr_meta_type_character,
-                           CR_CHARACTER_STAMINA );
-    ensure_character_meta( $character[ 'id' ], cr_meta_type_character,
-                           CR_CHARACTER_STAMINA_TIMESTAMP );
-
-    // TODO: add ensure_character_meta_list or something equivalent.
-    //       need to check all of the defines, but each one is at least one
-    //       db hit.
+    ensure_character_meta_keygroup(
+        $character[ 'id' ], cr_meta_type_character, array(
+            CR_TUTORIAL_STATUS,
+            CR_CHARACTER_NAME, CR_CHARACTER_MONEY, CR_CHARACTER_TIP,
+            CR_CURRENT_ZONE, CR_CHARACTER_HEALTH, CR_CHARACTER_HEALTH_MAX,
+            CR_CHARACTER_STAMINA, CR_CHARACTER_STAMINA_TIMESTAMP,
+            CR_CHARACTER_STR, CR_CHARACTER_DEX, CR_CHARACTER_INT,
+            CR_CHARACTER_CON, CR_CHARACTER_APP, CR_CHARACTER_POW,
+            CR_CHARACTER_EDU,
+            CR_CHARACTER_JOB_ID, CR_CHARACTER_JOB_HIRED,
+            CR_CHARACTER_JOB_LASTPAID
+        ) );
 }
 
 add_action( 'select_character', 'cr_login' );
