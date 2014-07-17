@@ -2,6 +2,7 @@
 
 require( GAME_CUSTOM_PATH . 'profile.php' );
 
+require( GAME_CUSTOM_PATH . 'career.php' );
 require( GAME_CUSTOM_PATH . 'inventory.php' );
 require( GAME_CUSTOM_PATH . 'map.php' );
 require( GAME_CUSTOM_PATH . 'predicate.php' );

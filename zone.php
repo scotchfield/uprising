@@ -142,39 +142,3 @@ function cr_zone_content() {
 
 add_action( 'do_page_content', 'cr_zone_content' );
 
-function cr_zone_career() {
-    global $character;
-
-?><h2>Career</h2>
-<p class="lead">One of the easiest ways to make money is to find a reputable
-career.  As you progress through the company ranks, you'll make more money
-and command more respect.</p>
-<?php
-    $job_id = intval( $character[ 'meta' ][ cr_meta_type_character ][
-        CR_CHARACTER_JOB_ID ] );
-
-    if ( 0 == $job_id ) {
-        echo( '<h3>You are unemployed! You can find an entry-level career ' .
-              'below.</h3>' );
-
-        $employer_obj = get_game_meta_keytype( sc_game_meta_employers );
-        $job_obj = get_game_meta_keytype( sc_game_meta_jobs );
-
-        foreach ( $job_obj as $k => $job ) {
-            $job_obj[ $k ][ 'meta_value' ] = explode_meta(
-                $job[ 'meta_value' ] ) ;
-        }
-
-        foreach ( $employer_obj as $e ) {
-            echo( '<h4>' . $e[ 'meta_value' ] . '</h4>' );
-            foreach ( $job_obj as $k => $job ) {
-                if ( $job[ 'meta_value' ][ 'employer' ] == $e[ 'meta_key' ] ) {
-                    echo( '<p>' . $job[ 'meta_value' ][ 'title' ] . '</p>' );
-                }
-            }
-        }
-    } else {
-        $job = get_game_meta( sc_game_meta_jobs, $job_id );
-        debug_print( $job );
-    }
-}
