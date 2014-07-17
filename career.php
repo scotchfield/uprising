@@ -69,6 +69,15 @@ earn additional bonuses, and command more respect.</p>
               '</b> at <b>' . $employer[ 'meta_value' ] . '</b> (Tier ' .
               $job[ 'meta_value' ][ 'tier' ] . ', $' .
               $job[ 'meta_value' ][ 'salary' ] . '/day)</h4>' );
+        if ( isset( $_GET[ 'leave_confirm' ] ) ) {
+            echo( '<h3><a href="game-setting.php?setting=leave_career&' .
+                  'confirm=' . nonce_create( 'leave_confirm' ) . '">' .
+                  'You\'re quitting? Are you sure? This can\'t be ' .
+                  'undone!</a></h3>' );
+        } else {
+            echo( '<h5><a href="game-setting.php?setting=leave_career">' .
+                  'Leave this job for something new?</a></h5>' );
+        }
     }
 ?>
 <div class="row">
@@ -132,3 +141,32 @@ function cr_accept_career( $args ) {
 }
 
 $custom_setting_map[ 'accept_career' ] = 'cr_accept_career';
+
+function cr_leave_career( $args ) {
+    global $character;
+
+    $job_id = intval( $character[ 'meta' ][ cr_meta_type_character ][
+        CR_CHARACTER_JOB_ID ] );
+
+    if ( 0 == $job_id ) {
+        return;
+    }
+
+    if ( ! isset( $args[ 'confirm' ] ) ) {
+        $GLOBALS[ 'redirect_header' ] = GAME_URL . '?leave_confirm';
+        return;
+    }
+
+    if ( ! nonce_verify( $args[ 'confirm' ], 'leave_confirm' ) ) {
+        return;
+    }
+
+    update_character_meta( $character[ 'id' ], cr_meta_type_character,
+        CR_CHARACTER_JOB_ID, 0 );
+    update_character_meta( $character[ 'id' ], cr_meta_type_character,
+        CR_CHARACTER_JOB_HIRED, 0 );
+    update_character_meta( $character[ 'id' ], cr_meta_type_character,
+        CR_CHARACTER_JOB_LASTPAID, 0 );
+}
+
+$custom_setting_map[ 'leave_career' ] = 'cr_leave_career';
