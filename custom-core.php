@@ -61,6 +61,8 @@ function cr_login() {
             CR_CHARACTER_JOB_ID, CR_CHARACTER_JOB_HIRED,
             CR_CHARACTER_JOB_LASTPAID
         ) );
+
+    cr_award_salary();
 }
 
 add_action( 'select_character', 'cr_login' );

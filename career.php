@@ -8,8 +8,7 @@ function cr_zone_career() {
     $job = FALSE;
 
     if ( 0 != $job_id ) {
-        $job = get_game_meta( cr_game_meta_jobs, $job_id );
-        $job[ 'meta_value' ] = explode_meta( $job[ 'meta_value' ] );
+        $job = cr_get_job( $job_id );
         $employer = get_game_meta(
             cr_game_meta_employers, $job[ 'meta_value' ][ 'employer' ] );
     }
@@ -60,11 +59,6 @@ earn additional bonuses, and command more respect.</p>
             }
         }*/
     } else {
-        $job = get_game_meta( cr_game_meta_jobs, $job_id );
-        $job[ 'meta_value' ] = explode_meta( $job[ 'meta_value' ] );
-        $employer = get_game_meta(
-            cr_game_meta_employers, $job[ 'meta_value' ][ 'employer' ] );
-
         echo( '<h4>Current job: <b>' . $job[ 'meta_value' ][ 'title' ] .
               '</b> at <b>' . $employer[ 'meta_value' ] . '</b> (Tier ' .
               $job[ 'meta_value' ][ 'tier' ] . ', $' .
@@ -76,11 +70,19 @@ earn additional bonuses, and command more respect.</p>
                 $job[ 'meta_value' ][ 'promote_after' ];
             if ( time() < $promote_time ) {
                 $promote_left = $promote_time - time();
-                echo( '<h4>Time until promotion: ' .
-                      round_time( $promote_left ) . '</h4>' );
+                echo( '<h5>Time until promotion: ' .
+                      time_expand( $promote_left ) . '</h5>' );
             } else {
-                echo( '<h4>Get a promotion!</h4>' );
+                echo( '<h5>Get a promotion!</h5>' );
             }
+
+            $promote_job = cr_get_job( $job[ 'meta_value' ][ 'promote_job' ] );
+
+            echo( '<h5>Next promotion: <b>' .
+                  $promote_job[ 'meta_value' ][ 'title' ] . '</b> at <b>' .
+                  $employer[ 'meta_value' ] . '</b> (Tier ' .
+                  $promote_job[ 'meta_value' ][ 'tier' ] . ', $' .
+                  $promote_job[ 'meta_value' ][ 'salary' ] . '/day)</h5>' );
         }
 
         if ( isset( $_GET[ 'leave_confirm' ] ) ) {
@@ -118,6 +120,52 @@ earn additional bonuses, and command more respect.</p>
 <?php
 }
 
+function cr_get_job( $job_id ) {
+    $job = get_game_meta( cr_game_meta_jobs, $job_id );
+
+    if ( FALSE == $job ) {
+        return FALSE;
+    }
+
+    $job[ 'meta_value' ] = explode_meta( $job[ 'meta_value' ] );
+
+    return $job;
+}
+
+function cr_award_salary() {
+    global $character;
+
+    $job_id = intval( $character[ 'meta' ][ cr_meta_type_character ][
+        CR_CHARACTER_JOB_ID ] );
+    $job = cr_get_job( $job_id );
+
+    if ( FALSE == $job ) {
+        return;
+    }
+
+    $time = cr_career_tick();
+    $last_paid = intval( $character[ 'meta' ][ cr_meta_type_character ][
+        CR_CHARACTER_JOB_LASTPAID ] );
+
+    if ( $time <= $last_paid ) {
+        return;
+    }
+
+    $money = intval( $character[ 'meta' ][ cr_meta_type_character ][
+        CR_CHARACTER_MONEY ] ) + intval( $job[ 'meta_value' ][ 'salary' ] );
+
+    update_character_meta( $character[ 'id' ], cr_meta_type_character,
+        CR_CHARACTER_MONEY, $money );
+    update_character_meta( $character[ 'id' ], cr_meta_type_character,
+        CR_CHARACTER_TIP, '<h1>You put in a hard day of work and earn ' .
+        $job[ 'meta_value' ][ 'salary' ] . ' dollars.</h1>' );
+    update_character_meta( $character[ 'id' ], cr_meta_type_character,
+        CR_CHARACTER_JOB_LASTPAID, cr_career_tick() );
+}
+
+function cr_career_tick() {
+    return floor( time() / SECONDS_DAY );
+}
 
 function cr_accept_career( $args ) {
     global $character;
@@ -144,7 +192,7 @@ function cr_accept_career( $args ) {
         update_character_meta( $character[ 'id' ], cr_meta_type_character,
             CR_CHARACTER_JOB_HIRED, time() );
         update_character_meta( $character[ 'id' ], cr_meta_type_character,
-            CR_CHARACTER_JOB_LASTPAID, time() );
+            CR_CHARACTER_JOB_LASTPAID, cr_career_tick() );
 
     } else if ( 0 != $job_id ) {
 
