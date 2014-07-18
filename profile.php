@@ -9,23 +9,41 @@ function cr_profile_content() {
 
     ensure_character_achievements();
 
+    $job = cr_get_job( $character[ 'meta' ][ cr_meta_type_character ][
+                       CR_CHARACTER_JOB_ID ] );
+    if ( FALSE != $job ) {
+        $employer = get_game_meta(
+            cr_game_meta_employers, $job[ 'meta_value' ][ 'employer' ] );
+    }
+
 ?><div class="row">
   <div class="col-md-6">
-    <h3>Character</h3>
+    <h3>Profile</h3>
 
     <dl class="dl-horizontal">
       <dt>Name</dt>
-      <dd><?php echo character_meta(
-          cr_meta_type_character, CR_CHARACTER_NAME ); ?>&nbsp;</dd>
-      <dt>Money</dt>
-      <dd><?php echo character_meta(
-          cr_meta_type_character, CR_CHARACTER_MONEY ); ?>&nbsp;</dd>
+      <dd><?php echo( $character[ 'character_name' ] ); ?>&nbsp;</dd>
+      <dt>Health</dt>
+      <dd><?php echo( $character[ 'meta' ][ cr_meta_type_character ][
+                      CR_CHARACTER_HEALTH ] . ' / ' .
+                      $character[ 'meta' ][ cr_meta_type_character ][
+                      CR_CHARACTER_HEALTH_MAX ] ); ?></dd>
       <dt>Stamina</dt>
-      <dd><?php echo intval( character_meta(
-          cr_meta_type_character, CR_CHARACTER_STAMINA ) ); ?> / 100</dd>
+      <dd><?php echo( intval( $character[ 'meta' ][ cr_meta_type_character ][
+                      CR_CHARACTER_STAMINA ] ) . ' / ' .
+                      intval( $character[ 'meta' ][ cr_meta_type_character ][
+                      CR_CHARACTER_STAMINA_MAX ] ) ); ?></dd>
+      <dt>Money</dt>
+      <dd>$<?php echo( $character[ 'meta' ][ cr_meta_type_character ][
+                       CR_CHARACTER_MONEY ] ); ?>&nbsp;</dd>
       <dt>Career</dt>
-      <dd><?php echo character_meta(
-          cr_meta_type_character, CR_CHARACTER_JOB_ID ); ?></dd>
+      <dd><?php
+    if ( FALSE != $job ) {
+        echo( $job[ 'meta_value' ][ 'title' ] . ' at ' .
+              $employer[ 'meta_value' ] );
+    } else {
+        echo( '<a href="?action=zone&zone_tag=career">Unemployed</a>' );
+    }?></dd>
     </dl>
 
     <h3>Achievements</h3>

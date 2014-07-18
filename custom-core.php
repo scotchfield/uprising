@@ -3,6 +3,9 @@
 require( GAME_CUSTOM_PATH . 'profile.php' );
 
 require( GAME_CUSTOM_PATH . 'career.php' );
+require( GAME_CUSTOM_PATH . 'crime.php' );
+require( GAME_CUSTOM_PATH . 'education.php' );
+require( GAME_CUSTOM_PATH . 'fitness.php' );
 require( GAME_CUSTOM_PATH . 'inventory.php' );
 require( GAME_CUSTOM_PATH . 'map.php' );
 require( GAME_CUSTOM_PATH . 'predicate.php' );
@@ -29,6 +32,7 @@ define( 'CR_CHARACTER_HEALTH_MAX',     51 );
 
 define( 'CR_CHARACTER_STAMINA',             60 );
 define( 'CR_CHARACTER_STAMINA_TIMESTAMP',   61 );
+define( 'CR_CHARACTER_STAMINA_MAX',         62 );
 
 define( 'CR_CHARACTER_STR',       100 );
 define( 'CR_CHARACTER_DEX',       101 );
@@ -50,11 +54,18 @@ function cr_login() {
     global $character;
 
     ensure_character_meta_keygroup(
-        $character[ 'id' ], cr_meta_type_character, array(
-            CR_TUTORIAL_STATUS,
-            CR_CHARACTER_NAME, CR_CHARACTER_MONEY, CR_CHARACTER_TIP,
-            CR_CURRENT_ZONE, CR_CHARACTER_HEALTH, CR_CHARACTER_HEALTH_MAX,
+        $character[ 'id' ], cr_meta_type_character, '',
+        array(
+            CR_CHARACTER_NAME, CR_CHARACTER_TIP, CR_CURRENT_ZONE
+        ) );
+
+    ensure_character_meta_keygroup(
+        $character[ 'id' ], cr_meta_type_character, 0,
+        array(
+            CR_TUTORIAL_STATUS, CR_CHARACTER_MONEY,
+            CR_CHARACTER_HEALTH, CR_CHARACTER_HEALTH_MAX,
             CR_CHARACTER_STAMINA, CR_CHARACTER_STAMINA_TIMESTAMP,
+            CR_CHARACTER_STAMINA_MAX,
             CR_CHARACTER_STR, CR_CHARACTER_DEX, CR_CHARACTER_INT,
             CR_CHARACTER_CON, CR_CHARACTER_APP, CR_CHARACTER_POW,
             CR_CHARACTER_EDU,
