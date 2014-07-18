@@ -69,6 +69,20 @@ earn additional bonuses, and command more respect.</p>
               '</b> at <b>' . $employer[ 'meta_value' ] . '</b> (Tier ' .
               $job[ 'meta_value' ][ 'tier' ] . ', $' .
               $job[ 'meta_value' ][ 'salary' ] . '/day)</h4>' );
+
+        if ( isset( $job[ 'meta_value' ][ 'promote_after' ] ) ) {
+            $promote_time = character_meta( cr_meta_type_character,
+                CR_CHARACTER_JOB_HIRED ) + 
+                $job[ 'meta_value' ][ 'promote_after' ];
+            if ( time() < $promote_time ) {
+                $promote_left = $promote_time - time();
+                echo( '<h4>Time until promotion: ' .
+                      round_time( $promote_left ) . '</h4>' );
+            } else {
+                echo( '<h4>Get a promotion!</h4>' );
+            }
+        }
+
         if ( isset( $_GET[ 'leave_confirm' ] ) ) {
             echo( '<h3><a href="game-setting.php?setting=leave_career&' .
                   'confirm=' . nonce_create( 'leave_confirm' ) . '">' .
@@ -124,9 +138,16 @@ function cr_accept_career( $args ) {
     $new_job[ 'meta_value' ] = explode_meta( $new_job[ 'meta_value' ] );
 
     if ( ( 0 == $job_id ) && ( $new_job[ 'meta_value' ][ 'tier' ] == 1 ) ) {
+
         update_character_meta( $character[ 'id' ], cr_meta_type_character,
             CR_CHARACTER_JOB_ID, $new_job_id );
+        update_character_meta( $character[ 'id' ], cr_meta_type_character,
+            CR_CHARACTER_JOB_HIRED, time() );
+        update_character_meta( $character[ 'id' ], cr_meta_type_character,
+            CR_CHARACTER_JOB_LASTPAID, time() );
+
     } else if ( 0 != $job_id ) {
+
         $job = get_game_meta( cr_game_meta_jobs, $job_id );
         $job[ 'meta_value' ] = explode_meta( $job[ 'meta_value' ] );
 
@@ -135,8 +156,11 @@ function cr_accept_career( $args ) {
             debug_print( 'yes, can accept' );
         }
         debug_print( $new_job );
+
     } else {
+
         debug_print( 'can\'t accept this job' );
+
     }
 }
 
