@@ -90,12 +90,16 @@ function cr_zone_content() {
         echo( '<h2>Home Zone</h2>' );
     } else if ( ! strcmp( 'career', $zone[ 'zone_type' ] ) ) {
         cr_zone_career();
+    } else if ( ! strcmp( 'casino', $zone[ 'zone_type' ] ) ) {
+        cr_zone_casino();
     } else if ( ! strcmp( 'crime', $zone[ 'zone_type' ] ) ) {
         cr_zone_crime();
     } else if ( ! strcmp( 'education', $zone[ 'zone_type' ] ) ) {
         cr_zone_education();
     } else if ( ! strcmp( 'fitness', $zone[ 'zone_type' ] ) ) {
         cr_zone_fitness();
+    } else if ( ! strcmp( 'jail', $zone[ 'zone_type' ] ) ) {
+        cr_zone_jail();
     } else if ( ! strcmp( 'store', $zone[ 'zone_type' ] ) ) {
         $item_obj = get_zone_items_full( $zone[ 'id' ] );
 

@@ -3,10 +3,12 @@
 require( GAME_CUSTOM_PATH . 'profile.php' );
 
 require( GAME_CUSTOM_PATH . 'career.php' );
+require( GAME_CUSTOM_PATH . 'casino.php' );
 require( GAME_CUSTOM_PATH . 'crime.php' );
 require( GAME_CUSTOM_PATH . 'education.php' );
 require( GAME_CUSTOM_PATH . 'fitness.php' );
 require( GAME_CUSTOM_PATH . 'inventory.php' );
+require( GAME_CUSTOM_PATH . 'jail.php' );
 require( GAME_CUSTOM_PATH . 'map.php' );
 require( GAME_CUSTOM_PATH . 'predicate.php' );
 require( GAME_CUSTOM_PATH . 'select.php' );
