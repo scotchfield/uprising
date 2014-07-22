@@ -18,7 +18,7 @@ function cr_profile_content() {
 
 ?><div class="row">
   <div class="col-md-6">
-    <h3>Profile</h3>
+    <h2>Profile</h2>
 
     <dl class="dl-horizontal">
       <dt>Name</dt>

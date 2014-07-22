@@ -87,7 +87,7 @@ function cr_zone_content() {
     echo( '</div></div>' );*/
 
     if ( ! strcmp( 'home', $zone[ 'zone_type' ] ) ) {
-        echo( '<h2>Home Zone</h2>' );
+        echo( '<h2>My Home</h2>' );
     } else if ( ! strcmp( 'career', $zone[ 'zone_type' ] ) ) {
         cr_zone_career();
     } else if ( ! strcmp( 'casino', $zone[ 'zone_type' ] ) ) {

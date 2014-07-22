@@ -11,7 +11,7 @@ function cr_inventory_content() {
 
 ?><div class="row">
   <div class="col-md-6">
-    <h3>Inventory</h3>
+    <h2>Inventory</h2>
 <ul>
 <?php
     $burden = 0;
