@@ -50,6 +50,7 @@ define( 'CR_CHARACTER_JOB_LASTPAID',   152 );
 
 define( 'cr_game_meta_employers',   1 );
 define( 'cr_game_meta_jobs',        2 );
+define( 'cr_game_meta_crimes',      3 );
 
 
 function cr_login() {

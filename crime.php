@@ -18,5 +18,12 @@ a few laws.</p>
 </div>
 <?php
 
+    $crime_obj = get_game_meta_keytype( cr_game_meta_crimes );
+    debug_print( $crime_obj );
+
+    foreach ( $crime_obj as $crime ) {
+        $crime[ 'meta_value' ] = explode_meta( $crime[ 'meta_value' ] );
+        echo( '<h3>' . $crime[ 'meta_value' ][ 'title' ] . '</h3>' );
+    }
 
 }
