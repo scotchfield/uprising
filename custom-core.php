@@ -43,6 +43,7 @@ define( 'CR_CHARACTER_CON',       103 );
 define( 'CR_CHARACTER_APP',       104 );
 define( 'CR_CHARACTER_POW',       105 );
 define( 'CR_CHARACTER_EDU',       106 );
+define( 'CR_CHARACTER_XP',        107 );
 
 define( 'CR_CHARACTER_JOB_ID',         150 );
 define( 'CR_CHARACTER_JOB_HIRED',      151 );
@@ -71,7 +72,7 @@ function cr_login() {
             CR_CHARACTER_STAMINA_MAX,
             CR_CHARACTER_STR, CR_CHARACTER_DEX, CR_CHARACTER_INT,
             CR_CHARACTER_CON, CR_CHARACTER_APP, CR_CHARACTER_POW,
-            CR_CHARACTER_EDU,
+            CR_CHARACTER_EDU, CR_CHARACTER_XP,
             CR_CHARACTER_JOB_ID, CR_CHARACTER_JOB_HIRED,
             CR_CHARACTER_JOB_LASTPAID
         ) );

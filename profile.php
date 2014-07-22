@@ -29,8 +29,9 @@ function cr_profile_content() {
                       $character[ 'meta' ][ cr_meta_type_character ][
                       CR_CHARACTER_HEALTH_MAX ] ); ?></dd>
       <dt>Stamina</dt>
-      <dd><?php echo( intval( $character[ 'meta' ][ cr_meta_type_character ][
-                      CR_CHARACTER_STAMINA ] ) . ' / ' .
+      <dd><?php echo( round( floatval(
+                          $character[ 'meta' ][ cr_meta_type_character ][
+                          CR_CHARACTER_STAMINA ] ), $precision = 2 ) . ' / ' .
                       intval( $character[ 'meta' ][ cr_meta_type_character ][
                       CR_CHARACTER_STAMINA_MAX ] ) ); ?></dd>
       <dt>Money</dt>
@@ -43,7 +44,12 @@ function cr_profile_content() {
               $employer[ 'meta_value' ] );
     } else {
         echo( '<a href="?action=zone&zone_tag=career">Unemployed</a>' );
-    }?></dd>
+    }?></dd><?php
+    if ( $character[ 'id' ] == 3 ) {
+        echo( '<dt>XP Points:</dt><dd>' .
+              $character[ 'meta' ][ cr_meta_type_character ][
+                  CR_CHARACTER_XP ] . '</dd>' );
+    }?>
     </dl>
 
   </div>
