@@ -46,7 +46,43 @@ function cr_profile_content() {
     }?></dd>
     </dl>
 
-    <h3>Achievements</h3>
+  </div>
+  <div class="col-md-6">
+
+    <h2>Stats</h2>
+
+    <dl class="dl-horizontal">
+      <dt>Strength</dt>
+      <dd><?php echo( $character[ 'meta' ][ cr_meta_type_character ][
+                      CR_CHARACTER_STR ] ); ?></dd>
+      <dt>Dexterity</dt>
+      <dd><?php echo( $character[ 'meta' ][ cr_meta_type_character ][
+                      CR_CHARACTER_DEX ] ); ?></dd>
+      <dt>Intelligence</dt>
+      <dd><?php echo( $character[ 'meta' ][ cr_meta_type_character ][
+                      CR_CHARACTER_INT ] ); ?></dd>
+      <dt>Constitution</dt>
+      <dd><?php echo( $character[ 'meta' ][ cr_meta_type_character ][
+                      CR_CHARACTER_CON ] ); ?></dd>
+      <dt>Appearance</dt>
+      <dd><?php echo( $character[ 'meta' ][ cr_meta_type_character ][
+                      CR_CHARACTER_APP ] ); ?></dd>
+      <dt>Mental</dt>
+      <dd><?php echo( $character[ 'meta' ][ cr_meta_type_character ][
+                      CR_CHARACTER_POW ] ); ?></dd>
+      <dt>Education</dt>
+      <dd><?php echo( $character[ 'meta' ][ cr_meta_type_character ][
+                      CR_CHARACTER_EDU ] ); ?></dd>
+
+
+    </dl>
+
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+
+    <h2>Achievements</h2>
 <?php
     if ( 0 == count( $character[ 'achievements' ] ) ) {
         echo( '<h4>None yet!</h4>' );

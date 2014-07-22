@@ -23,7 +23,29 @@ a few laws.</p>
 
     foreach ( $crime_obj as $crime ) {
         $crime[ 'meta_value' ] = explode_meta( $crime[ 'meta_value' ] );
-        echo( '<h3>' . $crime[ 'meta_value' ][ 'title' ] . '</h3>' );
+        echo( '<h3><a href="game-setting.php?setting=commit_crime&id=' .
+              $crime[ 'meta_key' ] . '">' . $crime[ 'meta_value' ][ 'title' ] .
+              '</a></h3>' );
     }
 
 }
+
+
+function cr_commit_crime( $args ) {
+    if ( ! isset( $args[ 'id' ] ) ) {
+        return;
+    }
+
+    $crime = get_game_meta( cr_game_meta_crimes, $args[ 'id' ] );
+
+    if ( FALSE == $crime ) {
+        return;
+    }
+
+    $crime[ 'meta_value' ] = explode_meta( $crime[ 'meta_value' ] );
+
+    debug_print( $crime );
+    exit;
+}
+
+$custom_setting_map[ 'commit_crime' ] = 'cr_commit_crime';
