@@ -301,8 +301,10 @@ function cr_regen_stamina() {
         $stamina_seconds = time() - intval( character_meta(
             cr_meta_type_character, CR_CHARACTER_STAMINA_TIMESTAMP ) );
         $stamina_gain = $stamina_seconds / 60.0;
+
+        $new_stamina = min( 100, $stamina + $stamina_gain );
         update_character_meta( $character[ 'id' ], cr_meta_type_character,
-            CR_CHARACTER_STAMINA, min( 100, $stamina + $stamina_gain ) );
+            CR_CHARACTER_STAMINA, $new_stamina );
     }
 
     update_character_meta( $character[ 'id' ], cr_meta_type_character,

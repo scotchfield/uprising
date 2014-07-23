@@ -47,8 +47,8 @@ function cr_profile_content() {
     }?></dd><?php
     if ( $character[ 'id' ] == 3 ) {
         echo( '<dt>XP Points:</dt><dd>' .
-              $character[ 'meta' ][ cr_meta_type_character ][
-                  CR_CHARACTER_XP ] . '</dd>' );
+              round( floatval( $character[ 'meta' ][ cr_meta_type_character ][
+                  CR_CHARACTER_XP ] ), $precision = 2 ) . '</dd>' );
     }?>
     </dl>
 

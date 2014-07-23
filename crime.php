@@ -50,6 +50,11 @@ function cr_commit_crime( $args ) {
     }
 
     $meta = explode_meta( $crime[ 'meta_value' ] );
+
+    if ( ! isset( $meta[ 'stamina' ] ) ) {
+        return;
+    }
+
     $xp = floatval( $character[ 'meta' ][ cr_meta_type_character ][
                     CR_CHARACTER_XP ] );
     $success = FALSE;
@@ -57,7 +62,8 @@ function cr_commit_crime( $args ) {
     $float_obj = array(
         'stamina', 'xp_always_succeed_until',
         'xp_min', 'xp_min_success', 'xp_max', 'xp_max_success',
-        'xp_award_min', 'xp_award_max', 'xp_needed'
+        'xp_award_min', 'xp_award_max', 'xp_needed',
+        'money_reward_min', 'money_reward_max',
     );
     foreach ( $float_obj as $f ) {
         if ( isset( $meta[ $f ] ) ) {
@@ -97,9 +103,25 @@ function cr_commit_crime( $args ) {
         update_character_meta( $character[ 'id' ], cr_meta_type_character,
             CR_CHARACTER_XP, $xp + $xp_award );
 
+        $tip_obj = array(
+            $meta[ 'text' ],
+            'You succeed!',
+            'You gain some experience.'
+        );
+
+        if ( isset( $meta[ 'money_reward_min' ] ) ) {
+            $money = mt_rand(
+                $meta[ 'money_reward_min' ], $meta[ 'money_reward_max' ] );
+            $new_money = intval( character_meta( cr_meta_type_character,
+                CR_CHARACTER_MONEY ) ) + $money;
+
+            update_character_meta( $character[ 'id' ], cr_meta_type_character,
+                CR_CHARACTER_MONEY, $new_money );
+            array_push( $tip_obj, 'You gain ' . $money . ' dollars.' );
+        }
+
         update_character_meta( $character[ 'id' ], cr_meta_type_character,
-            CR_CHARACTER_TIP, '<h1>You successfully commit the crime! ' .
-            'You gain some experience.</h1>' );
+            CR_CHARACTER_TIP, '<h1>' . join( ' ', $tip_obj ) . '</h1>' );
     } else {
         update_character_meta( $character[ 'id' ], cr_meta_type_character,
             CR_CHARACTER_TIP, '<h1>You try to commit the crime, but you\'re ' .

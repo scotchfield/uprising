@@ -73,7 +73,9 @@ earn additional bonuses, and command more respect.</p>
                 echo( '<h5>Time until promotion: ' .
                       time_expand( $promote_left ) . '</h5>' );
             } else {
-                echo( '<h5>Get a promotion!</h5>' );
+                echo( '<h5>' .
+                      '<a href="game-setting.php?setting=promote_career">' .
+                      'Apply for a promotion!</a></h5>' );
             }
 
             $promote_job = cr_get_job( $job[ 'meta_value' ][ 'promote_job' ] );
@@ -242,3 +244,47 @@ function cr_leave_career( $args ) {
 }
 
 $custom_setting_map[ 'leave_career' ] = 'cr_leave_career';
+
+
+function cr_promote_career( $args ) {
+    global $character;
+
+    $job_id = intval( $character[ 'meta' ][ cr_meta_type_character ][
+        CR_CHARACTER_JOB_ID ] );
+
+    if ( 0 == $job_id ) {
+        return;
+    }
+
+    $job = cr_get_job( $job_id );
+
+    if ( ! isset( $job[ 'meta_value' ][ 'promote_after' ] ) ) {
+        return;
+    }
+
+    $promote_time = character_meta( 
+        cr_meta_type_character, CR_CHARACTER_JOB_HIRED ) +
+        $job[ 'meta_value' ][ 'promote_after' ];
+
+    if ( time() < $promote_time ) {
+        return;
+    }
+
+    $promote_job = cr_get_job( $job[ 'meta_value' ][ 'promote_job' ] );
+
+    if ( FALSE == $promote_job ) {
+        return;
+    }
+
+    update_character_meta( $character[ 'id' ], cr_meta_type_character,
+        CR_CHARACTER_JOB_ID, $job[ 'meta_value' ][ 'promote_job' ] );
+    update_character_meta( $character[ 'id' ], cr_meta_type_character,
+        CR_CHARACTER_JOB_HIRED, time() );
+    update_character_meta( $character[ 'id' ], cr_meta_type_character,
+        CR_CHARACTER_TIP, '<h1>The promotion is yours, you\'ve earned it! ' .
+        'As of tomorrow, your new job title is <b>' .
+        $promote_job[ 'meta_value' ][ 'title' ] . '</b>!</h1>' );
+}
+
+$custom_setting_map[ 'promote_career' ] = 'cr_promote_career';
+
