@@ -49,9 +49,14 @@ define( 'CR_CHARACTER_JOB_ID',         150 );
 define( 'CR_CHARACTER_JOB_HIRED',      151 );
 define( 'CR_CHARACTER_JOB_LASTPAID',   152 );
 
+define( 'CR_CHARACTER_GYM_ID',         200 );
+
 define( 'cr_game_meta_employers',   1 );
 define( 'cr_game_meta_jobs',        2 );
 define( 'cr_game_meta_crimes',      3 );
+define( 'cr_game_meta_degrees',     4 );
+define( 'cr_game_meta_courses',     5 );
+define( 'cr_game_meta_gyms',        6 );
 
 
 function cr_login() {
@@ -75,6 +80,12 @@ function cr_login() {
             CR_CHARACTER_EDU, CR_CHARACTER_XP,
             CR_CHARACTER_JOB_ID, CR_CHARACTER_JOB_HIRED,
             CR_CHARACTER_JOB_LASTPAID
+        ) );
+
+    ensure_character_meta_keygroup(
+        $character[ 'id' ], cr_meta_type_character, 1,
+        array(
+            CR_CHARACTER_GYM_ID
         ) );
 
     cr_award_salary();
@@ -300,7 +311,7 @@ function cr_regen_stamina() {
     if ( $stamina < 100 ) {
         $stamina_seconds = time() - intval( character_meta(
             cr_meta_type_character, CR_CHARACTER_STAMINA_TIMESTAMP ) );
-        $stamina_gain = $stamina_seconds / 60.0;
+        $stamina_gain = $stamina_seconds / 120.0;
 
         $new_stamina = min( 100, $stamina + $stamina_gain );
         update_character_meta( $character[ 'id' ], cr_meta_type_character,
