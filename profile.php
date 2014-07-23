@@ -50,6 +50,9 @@ function cr_profile_content() {
               round( floatval( $character[ 'meta' ][ cr_meta_type_character ][
                   CR_CHARACTER_XP ] ), $precision = 2 ) . '</dd>' );
     }?>
+      <dt>Level</dt>
+      <dd><?php echo( cr_get_level( floatval( character_meta(
+          cr_meta_type_character, CR_CHARACTER_XP ) ) ) ); ?></dd>
     </dl>
 
   </div>
@@ -111,3 +114,37 @@ function cr_profile_content() {
 }
 
 add_action( 'do_page_content', 'cr_profile_content' );
+
+
+function cr_get_level( $xp ) {
+    $xp_obj = array(
+        1 => 5,
+        2 => 10,
+        3 => 15,
+        4 => 20,
+        5 => 30,
+        6 => 40,
+        7 => 50,
+        8 => 70,
+        9 => 100,
+        10 => 150,
+        11 => 200,
+        12 => 300,
+        13 => 400,
+        14 => 500,
+        15 => 750,
+        16 => 1000,
+        17 => 1500,
+        18 => 2000,
+        19 => 2500,
+        20 => 3000,
+    );
+
+    foreach ( $xp_obj as $k => $v ) {
+        if ( $xp < $v ) {
+            return $k;
+        }
+    }
+
+    return 0;
+}
