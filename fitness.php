@@ -25,7 +25,6 @@ Work out in the city's fitness centers, and boost your combat stats.</p>
     $gym = get_game_meta( cr_game_meta_gyms, $gym_id );
     $gym[ 'meta_value' ] = explode_meta( $gym[ 'meta_value' ] );
 
-    debug_print( $gym );
 ?>
     <h3><a href="game-setting.php?setting=fitness_train&train=str">Train
         Strength</a></h3>
@@ -49,9 +48,45 @@ function cr_fitness_train( $args ) {
     $gym = get_game_meta( cr_game_meta_gyms, $gym_id );
     $gym[ 'meta_value' ] = explode_meta( $gym[ 'meta_value' ] );
 
-    debug_print( $gym );
+    $train_obj = array(
+        'str' => CR_CHARACTER_STR,
+        'dex' => CR_CHARACTER_DEX,
+        'int' => CR_CHARACTER_INT,
+        'con' => CR_CHARACTER_CON
+    );
 
-    exit;
+    if ( ( ! isset( $args[ 'train' ] ) ) ||
+         ( ! isset( $train_obj[ $args[ 'train' ] ] ) ) ) {
+        return;
+    }
+
+    $stamina = floatval( character_meta(
+        cr_meta_type_character, CR_CHARACTER_STAMINA ) );
+    if ( $stamina < 5 ) {
+        update_character_meta( $character[ 'id' ], cr_meta_type_character,
+            CR_CHARACTER_TIP, '<h1>You\'re way too tired to exercise right ' .
+            'now! Come back when you have some more stamina.</h1>' );
+
+        return;
+    }
+
+    $stat = rand_float(
+        $gym[ 'meta_value' ][ 'stat_min' ],
+        $gym[ 'meta_value' ][ 'stat_max' ] );
+
+    $new_stat = $stat + floatval( character_meta( cr_meta_type_character,
+        $train_obj[ $args[ 'train' ] ] ) );
+
+    update_character_meta( $character[ 'id' ], cr_meta_type_character,
+        $train_obj[ $args[ 'train' ] ], $new_stat );
+
+    $stamina = $stamina - 5;
+    update_character_meta( $character[ 'id' ], cr_meta_type_character,
+        CR_CHARACTER_STAMINA, $stamina );
+
+    update_character_meta( $character[ 'id' ], cr_meta_type_character,
+        CR_CHARACTER_TIP, '<h1>You work out and gain ' . $stat .
+        ' points to that stat!</h1>' );
 }
 
 $custom_setting_map[ 'fitness_train' ] = 'cr_fitness_train';

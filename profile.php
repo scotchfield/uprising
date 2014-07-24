@@ -62,17 +62,21 @@ function cr_profile_content() {
 
     <dl class="dl-horizontal">
       <dt>Strength</dt>
-      <dd><?php echo( $character[ 'meta' ][ cr_meta_type_character ][
-                      CR_CHARACTER_STR ] ); ?></dd>
+      <dd><?php echo( round( floatval(
+                          $character[ 'meta' ][ cr_meta_type_character ][
+                          CR_CHARACTER_STR ] ), $precision = 2 ) ); ?></dd>
       <dt>Dexterity</dt>
-      <dd><?php echo( $character[ 'meta' ][ cr_meta_type_character ][
-                      CR_CHARACTER_DEX ] ); ?></dd>
+      <dd><?php echo( round( floatval(
+                          $character[ 'meta' ][ cr_meta_type_character ][
+                          CR_CHARACTER_DEX ] ), $precision = 2 ) ); ?></dd>
       <dt>Intelligence</dt>
-      <dd><?php echo( $character[ 'meta' ][ cr_meta_type_character ][
-                      CR_CHARACTER_INT ] ); ?></dd>
+      <dd><?php echo( round( floatval(
+                          $character[ 'meta' ][ cr_meta_type_character ][
+                          CR_CHARACTER_INT ] ), $precision = 2 ) ); ?></dd>
       <dt>Constitution</dt>
-      <dd><?php echo( $character[ 'meta' ][ cr_meta_type_character ][
-                      CR_CHARACTER_CON ] ); ?></dd>
+      <dd><?php echo( round( floatval(
+                          $character[ 'meta' ][ cr_meta_type_character ][
+                          CR_CHARACTER_CON ] ), $precision = 2 ) ); ?></dd>
       <dt>Appearance</dt>
       <dd><?php echo( $character[ 'meta' ][ cr_meta_type_character ][
                       CR_CHARACTER_APP ] ); ?></dd>
