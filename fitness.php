@@ -64,8 +64,8 @@ function cr_fitness_train( $args ) {
         cr_meta_type_character, CR_CHARACTER_STAMINA ) );
     if ( $stamina < 5 ) {
         update_character_meta( $character[ 'id' ], cr_meta_type_character,
-            CR_CHARACTER_TIP, '<h1>You\'re way too tired to exercise right ' .
-            'now! Come back when you have some more stamina.</h1>' );
+            CR_CHARACTER_TIP, 'You\'re way too tired to exercise right ' .
+            'now! Come back when you have some more stamina.' );
 
         return;
     }
@@ -85,8 +85,8 @@ function cr_fitness_train( $args ) {
         CR_CHARACTER_STAMINA, $stamina );
 
     update_character_meta( $character[ 'id' ], cr_meta_type_character,
-        CR_CHARACTER_TIP, '<h1>You work out and gain ' . $stat .
-        ' points to that stat!</h1>' );
+        CR_CHARACTER_TIP, 'You work out and gain ' . $stat .
+        ' points to that stat!' );
 }
 
 $custom_setting_map[ 'fitness_train' ] = 'cr_fitness_train';

@@ -240,7 +240,7 @@ function cr_tip_print() {
     $tip = character_meta( cr_meta_type_character, CR_CHARACTER_TIP );
 
     if ( 0 < strlen( $tip ) ) {
-        echo( $tip );
+        echo( '<p class="tip">' . $tip . '</p>' );
         update_character_meta( $character[ 'id' ], cr_meta_type_character,
             CR_CHARACTER_TIP, '' );
     }

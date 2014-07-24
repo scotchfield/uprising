@@ -159,8 +159,8 @@ function cr_award_salary() {
     update_character_meta( $character[ 'id' ], cr_meta_type_character,
         CR_CHARACTER_MONEY, $money );
     update_character_meta( $character[ 'id' ], cr_meta_type_character,
-        CR_CHARACTER_TIP, '<h1>You put in a hard day of work and earn ' .
-        $job[ 'meta_value' ][ 'salary' ] . ' dollars.</h1>' );
+        CR_CHARACTER_TIP, 'You put in a hard day of work and earn ' .
+        $job[ 'meta_value' ][ 'salary' ] . ' dollars.' );
     update_character_meta( $character[ 'id' ], cr_meta_type_character,
         CR_CHARACTER_JOB_LASTPAID, cr_career_tick() );
 }
@@ -281,9 +281,9 @@ function cr_promote_career( $args ) {
     update_character_meta( $character[ 'id' ], cr_meta_type_character,
         CR_CHARACTER_JOB_HIRED, time() );
     update_character_meta( $character[ 'id' ], cr_meta_type_character,
-        CR_CHARACTER_TIP, '<h1>The promotion is yours, you\'ve earned it! ' .
+        CR_CHARACTER_TIP, 'The promotion is yours, you\'ve earned it! ' .
         'As of tomorrow, your new job title is <b>' .
-        $promote_job[ 'meta_value' ][ 'title' ] . '</b>!</h1>' );
+        $promote_job[ 'meta_value' ][ 'title' ] . '</b>!' );
 }
 
 $custom_setting_map[ 'promote_career' ] = 'cr_promote_career';

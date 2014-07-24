@@ -74,8 +74,8 @@ function cr_commit_crime( $args ) {
     if ( $character[ 'meta' ][ cr_meta_type_character ][
              CR_CHARACTER_STAMINA ] < $meta[ 'stamina' ] ) {
         update_character_meta( $character[ 'id' ], cr_meta_type_character,
-            CR_CHARACTER_TIP, '<h1>You\'re too tired to pull off that crime ' .
-            'right now. Try again when you have more stamina!</h1>' );
+            CR_CHARACTER_TIP, 'You\'re too tired to pull off that crime ' .
+            'right now. Try again when you have more stamina!' );
 
         return;
     }
@@ -121,11 +121,11 @@ function cr_commit_crime( $args ) {
         }
 
         update_character_meta( $character[ 'id' ], cr_meta_type_character,
-            CR_CHARACTER_TIP, '<h1>' . join( ' ', $tip_obj ) . '</h1>' );
+            CR_CHARACTER_TIP, join( ' ', $tip_obj ) );
     } else {
         update_character_meta( $character[ 'id' ], cr_meta_type_character,
-            CR_CHARACTER_TIP, '<h1>You try to commit the crime, but you\'re ' .
-            'stopped!</h1>' );
+            CR_CHARACTER_TIP, 'You try to commit the crime, but you\'re ' .
+            'stopped!' );
     }
 
     $stamina = $character[ 'meta' ][ cr_meta_type_character ][

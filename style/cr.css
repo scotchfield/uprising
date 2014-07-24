@@ -82,6 +82,15 @@ ul.nav.navbar-nav a:hover {
     color: #ff0000;
 }
 
+p.tip {
+    //background-color: #FFFFA0;
+    border: 3px solid #E5E590;
+    font-weight: bold;
+    padding: 4px;
+    text-align: center;
+    font-size: 150%;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
