@@ -3,8 +3,8 @@
 function cr_zone_career() {
     global $character;
 
-    $job_id = intval( $character[ 'meta' ][ cr_meta_type_character ][
-        CR_CHARACTER_JOB_ID ] );
+    $job_id = intval( character_meta( cr_meta_type_character,
+        CR_CHARACTER_JOB_ID ) );
     $job = FALSE;
 
     if ( 0 != $job_id ) {
@@ -137,8 +137,8 @@ function cr_get_job( $job_id ) {
 function cr_award_salary() {
     global $character;
 
-    $job_id = intval( $character[ 'meta' ][ cr_meta_type_character ][
-        CR_CHARACTER_JOB_ID ] );
+    $job_id = intval( character_meta( cr_meta_type_character,
+        CR_CHARACTER_JOB_ID ) );
     $job = cr_get_job( $job_id );
 
     if ( FALSE == $job ) {
@@ -146,15 +146,15 @@ function cr_award_salary() {
     }
 
     $time = cr_career_tick();
-    $last_paid = intval( $character[ 'meta' ][ cr_meta_type_character ][
-        CR_CHARACTER_JOB_LASTPAID ] );
+    $last_paid = intval( character_meta( cr_meta_type_character,
+        CR_CHARACTER_JOB_LASTPAID ) );
 
     if ( $time <= $last_paid ) {
         return;
     }
 
-    $money = intval( $character[ 'meta' ][ cr_meta_type_character ][
-        CR_CHARACTER_MONEY ] ) + intval( $job[ 'meta_value' ][ 'salary' ] );
+    $money = intval( character_meta( cr_meta_type_character,
+        CR_CHARACTER_MONEY ) ) + intval( $job[ 'meta_value' ][ 'salary' ] );
 
     update_character_meta( $character[ 'id' ], cr_meta_type_character,
         CR_CHARACTER_MONEY, $money );
@@ -176,8 +176,8 @@ function cr_accept_career( $args ) {
         return;
     }
 
-    $job_id = intval( $character[ 'meta' ][ cr_meta_type_character ][
-        CR_CHARACTER_JOB_ID ] );
+    $job_id = intval( character_meta( cr_meta_type_character,
+        CR_CHARACTER_JOB_ID ) );
 
     $new_job_id = intval( $args[ 'career_id' ] );
     $new_job = get_game_meta( cr_game_meta_jobs, $new_job_id );
@@ -219,8 +219,8 @@ $custom_setting_map[ 'accept_career' ] = 'cr_accept_career';
 function cr_leave_career( $args ) {
     global $character;
 
-    $job_id = intval( $character[ 'meta' ][ cr_meta_type_character ][
-        CR_CHARACTER_JOB_ID ] );
+    $job_id = intval( character_meta( cr_meta_type_character,
+        CR_CHARACTER_JOB_ID ) );
 
     if ( 0 == $job_id ) {
         return;
@@ -249,8 +249,8 @@ $custom_setting_map[ 'leave_career' ] = 'cr_leave_career';
 function cr_promote_career( $args ) {
     global $character;
 
-    $job_id = intval( $character[ 'meta' ][ cr_meta_type_character ][
-        CR_CHARACTER_JOB_ID ] );
+    $job_id = intval( character_meta( cr_meta_type_character,
+        CR_CHARACTER_JOB_ID ) );
 
     if ( 0 == $job_id ) {
         return;

@@ -24,8 +24,8 @@ a few laws.</p>
         $crime[ 'meta_value' ] = explode_meta( $crime[ 'meta_value' ] );
         if ( ( isset( $crime[ 'meta_value' ][ 'xp_needed' ] ) ) &&
              ( floatval( $crime[ 'meta_value' ][ 'xp_needed' ] ) >
-               floatval( $character[ 'meta' ][ cr_meta_type_character ][
-                   CR_CHARACTER_XP ] ) ) ) {
+               floatval( character_meta( cr_meta_type_character,
+                   CR_CHARACTER_XP ) ) ) ) {
             continue;
         }
         echo( '<h3><a href="game-setting.php?setting=commit_crime&id=' .
@@ -55,8 +55,8 @@ function cr_commit_crime( $args ) {
         return;
     }
 
-    $xp = floatval( $character[ 'meta' ][ cr_meta_type_character ][
-                    CR_CHARACTER_XP ] );
+    $xp = floatval( character_meta( cr_meta_type_character,
+                    CR_CHARACTER_XP ) );
     $success = FALSE;
 
     $float_obj = array(
@@ -71,8 +71,8 @@ function cr_commit_crime( $args ) {
         }
     }
 
-    if ( $character[ 'meta' ][ cr_meta_type_character ][
-             CR_CHARACTER_STAMINA ] < $meta[ 'stamina' ] ) {
+    if ( floatval( character_meta( cr_meta_type_character,
+             CR_CHARACTER_STAMINA ) ) < $meta[ 'stamina' ] ) {
         update_character_meta( $character[ 'id' ], cr_meta_type_character,
             CR_CHARACTER_TIP, 'You\'re too tired to pull off that crime ' .
             'right now. Try again when you have more stamina!' );
@@ -130,8 +130,8 @@ function cr_commit_crime( $args ) {
             CR_CHARACTER_JAIL_TIME, time() + 300 );
     }
 
-    $stamina = $character[ 'meta' ][ cr_meta_type_character ][
-        CR_CHARACTER_STAMINA ] - $meta[ 'stamina' ];
+    $stamina = floatval( character_meta( cr_meta_type_character,
+        CR_CHARACTER_STAMINA ) ) - $meta[ 'stamina' ];
     update_character_meta( $character[ 'id' ], cr_meta_type_character,
         CR_CHARACTER_STAMINA, $stamina );
 }
