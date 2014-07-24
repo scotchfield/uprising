@@ -125,7 +125,9 @@ function cr_commit_crime( $args ) {
     } else {
         update_character_meta( $character[ 'id' ], cr_meta_type_character,
             CR_CHARACTER_TIP, 'You try to commit the crime, but you\'re ' .
-            'stopped!' );
+            'stopped and thrown in jail!' );
+        update_character_meta( $character[ 'id' ], cr_meta_type_character,
+            CR_CHARACTER_JAIL_TIME, time() + 300 );
     }
 
     $stamina = $character[ 'meta' ][ cr_meta_type_character ][

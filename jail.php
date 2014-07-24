@@ -1,5 +1,26 @@
 <?php
 
+function cr_jail_check() {
+    global $character;
+
+    if ( FALSE == $character ) {
+        return;
+    }
+
+    $t = intval( character_meta(
+        cr_meta_type_character, CR_CHARACTER_JAIL_TIME ) );
+
+    if ( time() <= $t ) {
+        $valid_actions = array( 'profile', 'dashboard' );
+
+        if ( ! in_array( game_get_action(), $valid_actions ) ) {
+            game_set_action( 'jail' );
+        }
+    }
+}
+
+add_action( 'action_set', 'cr_jail_check' );
+
 function cr_zone_jail() {
     global $character;
 
@@ -18,5 +39,26 @@ got caught.</p>
 </div>
 <?php
 
-
+//CR_CHARACTER_JAIL_TIME
 }
+
+function cr_zone_jail_locked_content() {
+    global $character;
+
+    if ( strcmp( 'jail', game_get_action() ) ) {
+       return;
+    }
+
+    $time_left = intval( character_meta(
+        cr_meta_type_character, CR_CHARACTER_JAIL_TIME ) ) - time();
+?>
+<div class="row">
+  <h2>Jail</h2>
+</div>
+<div class="row">
+  <h3>You're stuck in jail and locked up for another
+    <?php echo( time_expand( $time_left ) ); ?>.</h3>
+<?php
+}
+
+add_action( 'do_page_content', 'cr_zone_jail_locked_content' );
