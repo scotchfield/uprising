@@ -71,17 +71,17 @@ if ( isset( $_GET[ 'notify' ] ) ) {
   <div class="row">
 
     <div class="col-md-8">
-      <h3>Pilot your mech and save the city</h3>
-      <p>As a pilot enlisted into Cydonia Heavy Industries, you gain
-        access to a suite of advanced mecha. Upgrade them as you prove
-        your worth in combat, and save the shattered city of Erebus.</p>
+      <h3>Indulge in a life of crime</h3>
+      <p>Live like royalty through a combination of hard work and crooked
+        gains. Commit crimes, buy and sell property, train at the gym, and
+        crush enemies under your heel as you rise to the top.</p>
       <h3>Always free</h3>
       <p><?php echo( GAME_NAME ); ?> is free to play, and we are devoted
-        to keeping it that way. To fund the development and continued
-        expansion of the game, we offer a range of optional
-        microtransactions that expose new areas or allow pilots to
-        distinguish themselves. <?php echo( GAME_NAME ); ?> is not a
-        "pay-to-win" game.</p>
+        to keeping it that way. Although we offer microtransactions that
+        can expose new area or allow characters to distinguish themselves,
+        <?php echo( GAME_NAME ); ?> is not a "pay-to-win" game. Purchases
+        are strictly optional, and there will always be ways to obtain the
+        same items without payment.</p>
     </div>
     <div class="col-md-4">
 
