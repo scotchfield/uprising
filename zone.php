@@ -88,64 +88,6 @@ function cr_zone_content() {
 
     if ( ! strcmp( 'home', $zone[ 'zone_type' ] ) ) {
         echo( '<h2>My Home</h2>' );
-    } else if ( ! strcmp( 'career', $zone[ 'zone_type' ] ) ) {
-        cr_zone_career();
-    } else if ( ! strcmp( 'casino', $zone[ 'zone_type' ] ) ) {
-        cr_zone_casino();
-    } else if ( ! strcmp( 'crime', $zone[ 'zone_type' ] ) ) {
-        cr_zone_crime();
-    } else if ( ! strcmp( 'education', $zone[ 'zone_type' ] ) ) {
-        cr_zone_education();
-    } else if ( ! strcmp( 'fitness', $zone[ 'zone_type' ] ) ) {
-        cr_zone_fitness();
-    } else if ( ! strcmp( 'jail', $zone[ 'zone_type' ] ) ) {
-        cr_zone_jail();
-    } else if ( ! strcmp( 'store', $zone[ 'zone_type' ] ) ) {
-        $item_obj = get_zone_items_full( $zone[ 'id' ] );
-
-        echo( '<div class="row"><div class="col-xs-6">' .
-              '<h3>Items for sale</h3>' );
-
-        if ( 0 == count( $item_obj ) ) {
-            echo( '<h4>Nothing</h4>' );
-        } else {
-            echo( '<ul>' );
-            foreach ( $item_obj as $item ) {
-                $item_meta = explode_meta( $item[ 'item_meta' ] );
-                echo( '<li>' . cr_item_string( $item ) .
-                      ' (<a href="game-setting.php?setting=buy_item' .
-                      '&zone_tag=' . $zone[ 'zone_tag' ] . '&item_id=' .
-                      $item[ 'id' ] . '">buy: ' . $item_meta[ 'buy' ] .
-                      ' credits</a>)</li>' );
-            }
-            echo( '</ul>' );
-        }
-
-        echo( '</div><div class="col-xs-6"><h3>Sell your items</h3>' );
-
-        $item_obj = get_character_items_full( $character[ 'id' ] );
-
-        if ( 0 == count( $item_obj ) ) {
-            echo( '<h4>Nothing</h4>' );
-        } else {
-            echo( '<ul>' );
-            foreach ( $item_obj as $item ) {
-                $item_meta = explode_meta( $item[ 'item_meta' ] );
-
-                if ( ! isset( $item_meta[ 'sell' ] ) ) {
-                    continue;
-                }
-
-                echo( '<li>' . cr_item_string( $item ) .
-                      ' (<a href="game-setting.php?setting=sell_item' .
-                      '&zone_tag=' . $zone[ 'zone_tag' ] . '&item_id=' .
-                      $item[ 'id' ] . '">sell: ' . $item_meta[ 'sell' ] .
-                      ' credits</a>)</li>' );
-            }
-            echo( '</ul>' );
-        }
-
-        echo( '</div></div>' );
     }
 
 }

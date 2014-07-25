@@ -1,7 +1,11 @@
 <?php
 
-function cr_zone_career() {
+function cr_career_content() {
     global $character;
+
+    if ( strcmp( 'career', game_get_action() ) ) {
+       return;
+    }
 
     $job_id = character_meta_int( cr_meta_type_character, CR_CHARACTER_JOB_ID );
     $job = FALSE;
@@ -120,6 +124,8 @@ earn additional bonuses, and command more respect.</p>
 </div>
 <?php
 }
+
+add_action( 'do_page_content', 'cr_career_content' );
 
 function cr_get_job( $job_id ) {
     $job = get_game_meta( cr_game_meta_jobs, $job_id );

@@ -10,7 +10,7 @@ function cr_skills_content() {
 ?>
 <div class="row">
   <div class="col-xs-12">
-    <h3>Skills</h3>
+    <h2>Skills</h2>
     <p class="lead">Zone Description.</p>
   </div>
 </div>

@@ -1,7 +1,11 @@
 <?php
 
-function cr_zone_education() {
+function cr_education_content() {
     global $character;
+
+    if ( strcmp( 'education', game_get_action() ) ) {
+       return;
+    }
 
 ?>
 <div class="row">
@@ -37,3 +41,4 @@ you the tools to further your crime goals.</p>
     }
 }
 
+add_action( 'do_page_content', 'cr_education_content' );

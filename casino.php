@@ -1,7 +1,11 @@
 <?php
 
-function cr_zone_casino() {
+function cr_casino_content() {
     global $character;
+
+    if ( strcmp( 'casino', game_get_action() ) ) {
+       return;
+    }
 
 ?>
 <div class="row">
@@ -19,3 +23,5 @@ function cr_zone_casino() {
 
 
 }
+
+add_action( 'do_page_content', 'cr_casino_content' );

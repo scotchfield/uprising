@@ -1,7 +1,11 @@
 <?php
 
-function cr_zone_crime() {
+function cr_crime_content() {
     global $character;
+
+    if ( strcmp( 'crime', game_get_action() ) ) {
+       return;
+    }
 
 ?>
 <div class="row">
@@ -35,6 +39,7 @@ a few laws.</p>
 
 }
 
+add_action( 'do_page_content', 'cr_crime_content' );
 
 function cr_commit_crime( $args ) {
     global $character;

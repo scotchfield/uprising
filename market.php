@@ -10,7 +10,7 @@ function cr_market_content() {
 ?>
 <div class="row">
   <div class="col-xs-12">
-    <h3>Market</h3>
+    <h2>Market</h2>
     <p class="lead">Zone Description.</p>
   </div>
 </div>

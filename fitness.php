@@ -1,8 +1,12 @@
 <?php
 
 
-function cr_zone_fitness() {
+function cr_fitness_content() {
     global $character;
+
+    if ( strcmp( 'fitness', game_get_action() ) ) {
+       return;
+    }
 
 ?>
 <div class="row">
@@ -36,6 +40,8 @@ Work out in the city's fitness centers, and boost your combat stats.</p>
 <?php
 
 }
+
+add_action( 'do_page_content', 'cr_fitness_content' );
 
 
 function cr_fitness_train( $args ) {

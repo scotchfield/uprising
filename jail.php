@@ -41,7 +41,7 @@ got caught.</p>
 //CR_CHARACTER_JAIL_TIME
 }
 
-function cr_zone_jail_locked_content() {
+function cr_jail_locked_content() {
     global $character;
 
     if ( strcmp( 'jail', game_get_action() ) ) {
@@ -52,12 +52,30 @@ function cr_zone_jail_locked_content() {
         cr_meta_type_character, CR_CHARACTER_JAIL_TIME ) - time();
 ?>
 <div class="row">
-  <h2>Jail</h2>
+  <div class="col-xs-12">
+    <h2>Jail</h2>
+  </div>
 </div>
+<?php
+
+    if ( $time_left > 0 ) {
+
+?>
 <div class="row">
   <h3>You're stuck in jail and locked up for another
     <?php echo( time_expand( $time_left ) ); ?>.</h3>
+</div>
 <?php
+
+    } else {
+
+?>
+<div class="row">
+  <p class="lead">You stare at the rows of people trapped behind bars.</p>
+</div>
+<?php
+
+    }
 }
 
-add_action( 'do_page_content', 'cr_zone_jail_locked_content' );
+add_action( 'do_page_content', 'cr_jail_locked_content' );
