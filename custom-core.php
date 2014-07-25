@@ -170,10 +170,11 @@ function cr_header() {
 <?php
     if ( FALSE != $character ) {
         $sidebar_obj = array(
+            '-' => '-',
             'home' => 'My Home',
             'profile' => 'Profile',
             'inventory' => 'Inventory',
-            '-' => '-',
+            '--' => '-',
             'career' => 'Career',
             'casino' => 'Casino',
             'crime' => 'Crime',
@@ -185,6 +186,20 @@ function cr_header() {
         );
 ?>
         <div class="col-sm-2 col-md-2 sidebar">
+          <div><b>Health</b><br>
+          <?php echo( character_meta( cr_meta_type_character,
+                          CR_CHARACTER_HEALTH ) . ' / ' .
+                          character_meta( cr_meta_type_character,
+                          CR_CHARACTER_HEALTH_MAX ) ); ?></div>
+        <div><b>Stamina</b><br>
+          <?php echo( round( character_meta_float( cr_meta_type_character,
+                          CR_CHARACTER_STAMINA ), $precision = 2 ) . ' / ' .
+                             character_meta_int( cr_meta_type_character,
+                          CR_CHARACTER_STAMINA_MAX ) ); ?></div>
+        <div><b>Money</b><br>
+          $<?php echo( character_meta( cr_meta_type_character,
+                          CR_CHARACTER_MONEY ) ); ?></div>
+
           <ul class="nav nav-sidebar">
 <?php
         foreach ( $sidebar_obj as $k => $v ) {
