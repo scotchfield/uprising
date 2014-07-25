@@ -60,8 +60,8 @@ function cr_fitness_train( $args ) {
         return;
     }
 
-    $stamina = floatval( character_meta(
-        cr_meta_type_character, CR_CHARACTER_STAMINA ) );
+    $stamina = character_meta_float(
+        cr_meta_type_character, CR_CHARACTER_STAMINA );
     if ( $stamina < 5 ) {
         update_character_meta( $character[ 'id' ], cr_meta_type_character,
             CR_CHARACTER_TIP, 'You\'re way too tired to exercise right ' .
@@ -74,8 +74,8 @@ function cr_fitness_train( $args ) {
         $gym[ 'meta_value' ][ 'stat_min' ],
         $gym[ 'meta_value' ][ 'stat_max' ] );
 
-    $new_stat = $stat + floatval( character_meta( cr_meta_type_character,
-        $train_obj[ $args[ 'train' ] ] ) );
+    $new_stat = $stat + character_meta_float( cr_meta_type_character,
+        $train_obj[ $args[ 'train' ] ] );
 
     update_character_meta( $character[ 'id' ], cr_meta_type_character,
         $train_obj[ $args[ 'train' ] ], $new_stat );
@@ -83,6 +83,8 @@ function cr_fitness_train( $args ) {
     $stamina = $stamina - 5;
     update_character_meta( $character[ 'id' ], cr_meta_type_character,
         CR_CHARACTER_STAMINA, $stamina );
+
+    $stat = round( $stat, $precision = 2 );
 
     update_character_meta( $character[ 'id' ], cr_meta_type_character,
         CR_CHARACTER_TIP, 'You work out and gain ' . $stat .
