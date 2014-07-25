@@ -44,6 +44,8 @@ add_action( 'do_page_content', 'cr_crime_content' );
 function cr_commit_crime( $args ) {
     global $character;
 
+    $GLOBALS[ 'redirect_header' ] = GAME_URL . '?action=crime';
+
     if ( ! isset( $args[ 'id' ] ) ) {
         return;
     }
