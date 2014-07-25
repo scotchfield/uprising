@@ -17,7 +17,10 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-8">
+      <img src="<?php echo( GAME_CUSTOM_STYLE_URL ); ?>elysian.png" width="100%">
+    </div>
+    <div class="col-md-4">
 
       <form class="form-horizontal" role="form" name="login_form"
             id="login_form" method="post" action="game-login.php">
@@ -71,10 +74,20 @@ if ( isset( $_GET[ 'notify' ] ) ) {
   <div class="row">
 
     <div class="col-md-8">
-      <h3>Indulge in a life of crime</h3>
-      <p>Live like royalty through a combination of hard work and crooked
-        gains. Commit crimes, buy and sell property, train at the gym, and
-        crush enemies under your heel as you rise to the top.</p>
+      <h3>A City Under Siege!</h3>
+      <p>The city of Erebus has slowly descended into the hands of the
+        crooked. A powerful gang known as the XY have
+        influence over everyone with power, including the
+        politicians, the police force, and the large corporations in town.
+        With their own crypto-currency taking over the economic landscape,
+        the XY seem unstoppable.</p>
+      <h3>Rise up and take the power back!</h3>
+      <p>As a new recruit in the Elysian Uprising, you will join the
+        outsiders who commit subversive acts to bring down the criminals
+        taking over the city. By sabotaging the XY's interests,
+        obtaining a job that gives you access to the gang, and a wide
+        range of other actions, you will become a force for good, even if
+        it means you're branded a villain.</p>
       <h3>Always free</h3>
       <p><?php echo( GAME_NAME ); ?> is free to play, and we are devoted
         to keeping it that way. Although we offer microtransactions that
@@ -91,10 +104,11 @@ if ( isset( $_GET[ 'notify' ] ) ) {
 
   <div class="row">
 
-    <div class="col-md-8">
+    <div class="col-md-6">
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-6">
+      <h3 class="text-right">Register for a free account</h3>
 
       <form class="form-horizontal" name="register_form" id="register_form"
             method="post" action="game-login.php">
