@@ -10,8 +10,10 @@ require( GAME_CUSTOM_PATH . 'fitness.php' );
 require( GAME_CUSTOM_PATH . 'inventory.php' );
 require( GAME_CUSTOM_PATH . 'jail.php' );
 require( GAME_CUSTOM_PATH . 'map.php' );
+require( GAME_CUSTOM_PATH . 'market.php' );
 require( GAME_CUSTOM_PATH . 'predicate.php' );
 require( GAME_CUSTOM_PATH . 'select.php' );
+require( GAME_CUSTOM_PATH . 'skills.php' );
 require( GAME_CUSTOM_PATH . 'tutorial.php' );
 require( GAME_CUSTOM_PATH . 'zone.php' );
 
@@ -177,12 +179,14 @@ function cr_header() {
             <li><a href="?action=inventory">Inventory</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><a href="?action=zone&zone_tag=crime">Commit a Crime</a></li>
             <li><a href="?action=zone&zone_tag=career">Career</a></li>
-            <li><a href="?action=zone&zone_tag=fitness">Fitness</a></li>
-            <li><a href="?action=zone&zone_tag=education">Education</a></li>
             <li><a href="?action=zone&zone_tag=casino">Casino</a></li>
+            <li><a href="?action=zone&zone_tag=crime">Crime</a></li>
+            <li><a href="?action=zone&zone_tag=education">Education</a></li>
+            <li><a href="?action=zone&zone_tag=fitness">Fitness</a></li>
             <li><a href="?action=zone&zone_tag=jail">Jail</a></li>
+            <li><a href="?action=market">Market</a></li>
+            <li><a href="?action=skills">Skills</a></li>
           </ul>
         </div>
         <div class="col-sm-10 col-sm-offset-2 main">
