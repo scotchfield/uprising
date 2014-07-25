@@ -47,6 +47,8 @@ add_action( 'do_page_content', 'cr_fitness_content' );
 function cr_fitness_train( $args ) {
     global $character;
 
+    $GLOBALS[ 'redirect_header' ] = GAME_URL . '?action=fitness';
+
     $gym_id = character_meta_int( cr_meta_type_character, CR_CHARACTER_GYM_ID );
 
     $gym = get_game_meta( cr_game_meta_gyms, $gym_id );
