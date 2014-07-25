@@ -19,8 +19,7 @@ Work out in the city's fitness centers, and boost your combat stats.</p>
 </div>
 <?php
 
-    $gym_id = intval(
-        character_meta( cr_meta_type_character, CR_CHARACTER_GYM_ID ) );
+    $gym_id = character_meta_int( cr_meta_type_character, CR_CHARACTER_GYM_ID );
 
     $gym = get_game_meta( cr_game_meta_gyms, $gym_id );
     $gym[ 'meta_value' ] = explode_meta( $gym[ 'meta_value' ] );
@@ -42,8 +41,7 @@ Work out in the city's fitness centers, and boost your combat stats.</p>
 function cr_fitness_train( $args ) {
     global $character;
 
-    $gym_id = intval(
-        character_meta( cr_meta_type_character, CR_CHARACTER_GYM_ID ) );
+    $gym_id = character_meta_int( cr_meta_type_character, CR_CHARACTER_GYM_ID );
 
     $gym = get_game_meta( cr_game_meta_gyms, $gym_id );
     $gym[ 'meta_value' ] = explode_meta( $gym[ 'meta_value' ] );

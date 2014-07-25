@@ -7,8 +7,7 @@ function cr_jail_check() {
         return;
     }
 
-    $t = intval( character_meta(
-        cr_meta_type_character, CR_CHARACTER_JAIL_TIME ) );
+    $t = character_meta_int( cr_meta_type_character, CR_CHARACTER_JAIL_TIME );
 
     if ( time() <= $t ) {
         $valid_actions = array( 'profile', 'dashboard' );
@@ -49,8 +48,8 @@ function cr_zone_jail_locked_content() {
        return;
     }
 
-    $time_left = intval( character_meta(
-        cr_meta_type_character, CR_CHARACTER_JAIL_TIME ) ) - time();
+    $time_left = character_meta_int(
+        cr_meta_type_character, CR_CHARACTER_JAIL_TIME ) - time();
 ?>
 <div class="row">
   <h2>Jail</h2>

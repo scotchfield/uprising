@@ -29,11 +29,10 @@ function cr_profile_content() {
                       character_meta( cr_meta_type_character,
                       CR_CHARACTER_HEALTH_MAX ) ); ?></dd>
       <dt>Stamina</dt>
-      <dd><?php echo( round( floatval(
-                          character_meta( cr_meta_type_character,
-                          CR_CHARACTER_STAMINA ) ), $precision = 2 ) . ' / ' .
-                      intval( character_meta( cr_meta_type_character,
-                          CR_CHARACTER_STAMINA_MAX ) ) ); ?></dd>
+      <dd><?php echo( round( character_meta_float( cr_meta_type_character,
+                          CR_CHARACTER_STAMINA ), $precision = 2 ) . ' / ' .
+                      character_meta_int( cr_meta_type_character,
+                          CR_CHARACTER_STAMINA_MAX ) ); ?></dd>
       <dt>Money</dt>
       <dd>$<?php echo( character_meta( cr_meta_type_character,
                        CR_CHARACTER_MONEY ) ); ?>&nbsp;</dd>
@@ -47,12 +46,12 @@ function cr_profile_content() {
     }?></dd><?php
     if ( $character[ 'id' ] == 3 ) {
         echo( '<dt>XP Points:</dt><dd>' .
-              round( floatval( character_meta( cr_meta_type_character,
-                  CR_CHARACTER_XP ) ), $precision = 2 ) . '</dd>' );
+              round( character_meta_float( cr_meta_type_character,
+                  CR_CHARACTER_XP ), $precision = 2 ) . '</dd>' );
     }?>
       <dt>Level</dt>
-      <dd><?php echo( cr_get_level( floatval( character_meta(
-          cr_meta_type_character, CR_CHARACTER_XP ) ) ) ); ?></dd>
+      <dd><?php echo( cr_get_level( character_meta_float(
+          cr_meta_type_character, CR_CHARACTER_XP ) ) ); ?></dd>
     </dl>
 
   </div>
@@ -62,21 +61,17 @@ function cr_profile_content() {
 
     <dl class="dl-horizontal">
       <dt>Strength</dt>
-      <dd><?php echo( round( floatval(
-                          character_meta( cr_meta_type_character,
-                          CR_CHARACTER_STR ) ), $precision = 2 ) ); ?></dd>
+      <dd><?php echo( round( character_meta_float( cr_meta_type_character,
+                          CR_CHARACTER_STR ), $precision = 2 ) ); ?></dd>
       <dt>Dexterity</dt>
-      <dd><?php echo( round( floatval(
-                          character_meta( cr_meta_type_character,
-                          CR_CHARACTER_DEX ) ), $precision = 2 ) ); ?></dd>
+      <dd><?php echo( round( character_meta_float( cr_meta_type_character,
+                          CR_CHARACTER_DEX ), $precision = 2 ) ); ?></dd>
       <dt>Intelligence</dt>
-      <dd><?php echo( round( floatval(
-                          character_meta( cr_meta_type_character,
-                          CR_CHARACTER_INT ) ), $precision = 2 ) ); ?></dd>
+      <dd><?php echo( round( character_meta_float( cr_meta_type_character,
+                          CR_CHARACTER_INT ), $precision = 2 ) ); ?></dd>
       <dt>Constitution</dt>
-      <dd><?php echo( round( floatval(
-                          character_meta( cr_meta_type_character,
-                          CR_CHARACTER_CON ) ), $precision = 2 ) ); ?></dd>
+      <dd><?php echo( round( character_meta_float( cr_meta_type_character,
+                          CR_CHARACTER_CON ), $precision = 2 ) ); ?></dd>
       <dt>Appearance</dt>
       <dd><?php echo( character_meta( cr_meta_type_character,
                       CR_CHARACTER_APP ) ); ?></dd>

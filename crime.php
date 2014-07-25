@@ -24,8 +24,8 @@ a few laws.</p>
         $crime[ 'meta_value' ] = explode_meta( $crime[ 'meta_value' ] );
         if ( ( isset( $crime[ 'meta_value' ][ 'xp_needed' ] ) ) &&
              ( floatval( $crime[ 'meta_value' ][ 'xp_needed' ] ) >
-               floatval( character_meta( cr_meta_type_character,
-                   CR_CHARACTER_XP ) ) ) ) {
+               character_meta_float( cr_meta_type_character,
+                   CR_CHARACTER_XP ) ) ) {
             continue;
         }
         echo( '<h3><a href="game-setting.php?setting=commit_crime&id=' .
@@ -55,8 +55,7 @@ function cr_commit_crime( $args ) {
         return;
     }
 
-    $xp = floatval( character_meta( cr_meta_type_character,
-                    CR_CHARACTER_XP ) );
+    $xp = character_meta_float( cr_meta_type_character, CR_CHARACTER_XP );
     $success = FALSE;
 
     $float_obj = array(
@@ -71,8 +70,8 @@ function cr_commit_crime( $args ) {
         }
     }
 
-    if ( floatval( character_meta( cr_meta_type_character,
-             CR_CHARACTER_STAMINA ) ) < $meta[ 'stamina' ] ) {
+    if ( character_meta_float( cr_meta_type_character,
+             CR_CHARACTER_STAMINA ) < $meta[ 'stamina' ] ) {
         update_character_meta( $character[ 'id' ], cr_meta_type_character,
             CR_CHARACTER_TIP, 'You\'re too tired to pull off that crime ' .
             'right now. Try again when you have more stamina!' );
@@ -112,8 +111,8 @@ function cr_commit_crime( $args ) {
         if ( isset( $meta[ 'money_reward_min' ] ) ) {
             $money = mt_rand(
                 $meta[ 'money_reward_min' ], $meta[ 'money_reward_max' ] );
-            $new_money = intval( character_meta( cr_meta_type_character,
-                CR_CHARACTER_MONEY ) ) + $money;
+            $new_money = character_meta_int( cr_meta_type_character,
+                CR_CHARACTER_MONEY ) + $money;
 
             update_character_meta( $character[ 'id' ], cr_meta_type_character,
                 CR_CHARACTER_MONEY, $new_money );
@@ -130,8 +129,8 @@ function cr_commit_crime( $args ) {
             CR_CHARACTER_JAIL_TIME, time() + 300 );
     }
 
-    $stamina = floatval( character_meta( cr_meta_type_character,
-        CR_CHARACTER_STAMINA ) ) - $meta[ 'stamina' ];
+    $stamina = character_meta_float( cr_meta_type_character,
+        CR_CHARACTER_STAMINA ) - $meta[ 'stamina' ];
     update_character_meta( $character[ 'id' ], cr_meta_type_character,
         CR_CHARACTER_STAMINA, $stamina );
 }

@@ -286,13 +286,13 @@ function cr_regen_stamina() {
         return;
     }
 
-    $stamina = floatval( character_meta(
-        cr_meta_type_character, CR_CHARACTER_STAMINA ) );
+    $stamina = character_meta_float(
+        cr_meta_type_character, CR_CHARACTER_STAMINA );
 
     // todo: support higher max stamina as meta later
     if ( $stamina < 100 ) {
-        $stamina_seconds = time() - intval( character_meta(
-            cr_meta_type_character, CR_CHARACTER_STAMINA_TIMESTAMP ) );
+        $stamina_seconds = time() - character_meta_int(
+            cr_meta_type_character, CR_CHARACTER_STAMINA_TIMESTAMP );
         $stamina_gain = $stamina_seconds / 120.0;
 
         $new_stamina = min( 100, $stamina + $stamina_gain );
