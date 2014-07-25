@@ -169,24 +169,36 @@ function cr_header() {
 
 <?php
     if ( FALSE != $character ) {
+        $sidebar_obj = array(
+            'home' => 'My Home',
+            'profile' => 'Profile',
+            'inventory' => 'Inventory',
+            '-' => '-',
+            'career' => 'Career',
+            'casino' => 'Casino',
+            'crime' => 'Crime',
+            'education' => 'Education',
+            'fitness' => 'Fitness',
+            'jail' => 'Jail',
+            'market' => 'Market',
+            'skills' => 'Skills'
+        );
 ?>
         <div class="col-sm-2 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active">
-              <a href="?action=zone&zone_tag=home">My Home</a>
-            </li>
-            <li><a href="?action=profile">Profile</a></li>
-            <li><a href="?action=inventory">Inventory</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="?action=career">Career</a></li>
-            <li><a href="?action=casino">Casino</a></li>
-            <li><a href="?action=crime">Crime</a></li>
-            <li><a href="?action=education">Education</a></li>
-            <li><a href="?action=fitness">Fitness</a></li>
-            <li><a href="?action=jail">Jail</a></li>
-            <li><a href="?action=market">Market</a></li>
-            <li><a href="?action=skills">Skills</a></li>
+<?php
+        foreach ( $sidebar_obj as $k => $v ) {
+            if ( ! strcmp( game_get_action(), $k ) ) {
+                echo( '<li class="active">' .
+                      '<a href="?action=' . $k . '">' . $v . '</a></li>' );
+            } else if ( ! strcmp( '-', $v ) ) {
+                echo( '</ul><ul class="nav nav-sidebar">' );
+            } else {
+                echo( '<li>' .
+                      '<a href="?action=' . $k . '">' .     $v . '</a></li>' );
+            }
+        }
+?>
           </ul>
         </div>
         <div class="col-sm-10 col-sm-offset-2 main">
