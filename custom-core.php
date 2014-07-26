@@ -12,14 +12,16 @@ require( GAME_CUSTOM_PATH . 'jail.php' );
 require( GAME_CUSTOM_PATH . 'map.php' );
 require( GAME_CUSTOM_PATH . 'market.php' );
 require( GAME_CUSTOM_PATH . 'predicate.php' );
+require( GAME_CUSTOM_PATH . 'residence.php' );
 require( GAME_CUSTOM_PATH . 'select.php' );
 require( GAME_CUSTOM_PATH . 'skills.php' );
+require( GAME_CUSTOM_PATH . 'status.php' );
 require( GAME_CUSTOM_PATH . 'tutorial.php' );
 require( GAME_CUSTOM_PATH . 'zone.php' );
 
 $custom_start_page = 'title.php';
 
-$custom_default_action = 'zone';
+$custom_default_action = 'status';
 
 
 define( 'cr_meta_type_character',    1 );
@@ -171,8 +173,8 @@ function cr_header() {
     if ( FALSE != $character ) {
         $sidebar_obj = array(
             '-' => '-',
-            'home' => 'My Home',
             'profile' => 'Profile',
+            'residence' => 'Residence',
             'inventory' => 'Inventory',
             '--' => '-',
             'career' => 'Career',

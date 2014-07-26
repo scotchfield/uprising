@@ -10,8 +10,12 @@ function cr_inventory_content() {
     $item_obj = get_character_items_full( $character[ 'id' ] );
 
 ?><div class="row">
-  <div class="col-md-6">
+  <div class="col-md-12">
     <h2>Inventory</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
 <ul>
 <?php
     $burden = 0;

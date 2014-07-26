@@ -102,12 +102,12 @@ earn additional bonuses, and command more respect.</p>
     }
 ?>
 <div class="row">
-  <h3>Career Paths in Crime City</h3>
+  <h3>Career Paths in Erebus</h3>
 </div>
 <div class="row">
   <div class="col-md-6">
     <h4>Semantic Code</h4>
-    <p>The leading software development company in Crime City.  You'll
+    <p>The leading software development company in Erebus.  You'll
         learn a solid set of coding skills that will bring in a comfortable
         income while teaching you a new set of hacking crimes.</p>
     <p><a href="game-setting.php?setting=accept_career&career_id=1">Apply
