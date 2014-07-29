@@ -24,8 +24,10 @@ function cr_tutorial_print() {
 
         if ( ! get_bit( $t, 1 ) ) {
 ?>
-<h2>Welcome to X, the Shattered City.</h2>
-<p class="lead">Some flavour text here.</p>
+<h2>Welcome to Lancaster, a city under siege.</h2>
+<p class="lead">Thank you for coming. The resistance badly needs new
+recruits. After all, if we don't act soon to take back control from
+the X, our city is lost.</p>
 <p>Some more flavour text here.</p>
 <p><a href="game-setting.php?setting=tutorial&amp;status=1">Tell me
     more..</a></p>
