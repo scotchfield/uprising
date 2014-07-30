@@ -107,7 +107,13 @@ function cr_profile_content() {
 ?>
   </div>
   <div class="col-md-6">
-
+<?php
+    if ( 9 == $_SESSION[ 'u' ] ) {
+        echo( '<h2>Dev Stuff</h2>' );
+        echo( '<a href="game-setting.php?setting=clear_character_meta">Clear' .
+              ' character meta</a>' );
+    }
+?>
   </div>
 </div><?php
 }
@@ -147,3 +153,21 @@ function cr_get_level( $xp ) {
 
     return 0;
 }
+
+function cr_clear_character_meta( $args ) {
+    global $character;
+
+    if ( 9 != $_SESSION[ 'u' ] ) {
+        return;
+    }
+
+    if ( FALSE == $character ) {
+        return;
+    }
+
+    clear_all_character_meta( $character[ 'id' ] );
+
+    unset( $_SESSION[ 'c' ] );
+}
+
+$custom_setting_map[ 'clear_character_meta' ] = 'cr_clear_character_meta';
