@@ -114,7 +114,7 @@ function cr_header() {
     <link rel="stylesheet" href="<?php echo( GAME_URL );
         ?>style/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo( GAME_CUSTOM_STYLE_URL );
-        ?>cr.css">
+        ?>elysian.css">
     <link href="http://fonts.googleapis.com/css?family=Raleway:400,500"
           rel="stylesheet" type="text/css">
   </head>
