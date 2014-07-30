@@ -92,6 +92,10 @@ p.tip {
     font-size: 150%;
 }
 
+span.crimson {
+    color: #dc143c;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {

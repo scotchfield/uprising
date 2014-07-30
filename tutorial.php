@@ -25,15 +25,47 @@ function cr_tutorial_print() {
         if ( ! get_bit( $t, 1 ) ) {
 ?>
 <h2>Welcome to Lancaster, a city under siege.</h2>
-<p class="lead">Thank you for coming. The resistance badly needs new
-recruits. After all, if we don't act soon to take back control from
-the X, our city is lost.</p>
-<p>Some more flavour text here.</p>
+<p class="lead">Thank you for coming. We need you more than ever.</p>
+
+<p>The <span class="crimson">Crimson Revolution</span> are pushing
+forward, attacking our city with a brutal combination of calculated
+appropriation and physical warfare. Every day we lose ground. The
+police are dominated by a chief clearly under illicit control, the
+economy is pushed by thugs and driven by ruthless minds, and the
+politicians have been corrupt for as long as we can remember.</p>
+
+<p>The resistance badly needs new recruits. After all, if we don't act
+soon to take back control from the <span class="crimson">Crimson
+Revolution</span>, our city is lost.</p>
+
 <p><a href="game-setting.php?setting=tutorial&amp;status=1">Tell me
     more..</a></p>
+
 <?php
         } else if ( ! get_bit( $t, 2 ) ) {
 ?>
+
+<p><a href="game-setting.php?setting=tutorial&amp;status=2">Tell me
+    more..</a></p>
+
+<?php
+        } else if ( ! get_bit( $t, 3 ) ) {
+?>
+
+<p><a href="game-setting.php?setting=tutorial&amp;status=3">Tell me
+    more..</a></p>
+
+<?php
+        } else if ( ! get_bit( $t, 4 ) ) {
+?>
+
+<p><a href="game-setting.php?setting=tutorial&amp;status=4">Tell me
+    more..</a></p>
+
+<?php
+        } else if ( ! get_bit( $t, 5 ) ) {
+?>
+
 <h2>That's it!</h2>
 <p class="lead">You're ready to start cleaning up the mess.</p>
 <p>Remember, if you ever need help, just look to the navigation bar.
