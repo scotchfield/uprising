@@ -26,6 +26,7 @@ $custom_default_action = 'status';
 
 define( 'cr_meta_type_character',    1 );
 define( 'cr_meta_type_inventory',    2 );
+define( 'cr_meta_type_buff',         3 );
 
 define( 'CR_TUTORIAL_STATUS',     1 );
 define( 'CR_CHARACTER_NAME',      2 );
@@ -78,12 +79,8 @@ function cr_login() {
         $character[ 'id' ], cr_meta_type_character, 0,
         array(
             CR_TUTORIAL_STATUS, CR_CHARACTER_MONEY,
-            CR_CHARACTER_HEALTH, CR_CHARACTER_HEALTH_MAX,
-            CR_CHARACTER_STAMINA, CR_CHARACTER_STAMINA_TIMESTAMP,
-            CR_CHARACTER_STAMINA_MAX,
-            CR_CHARACTER_STR, CR_CHARACTER_DEX, CR_CHARACTER_INT,
-            CR_CHARACTER_CON, CR_CHARACTER_APP, CR_CHARACTER_POW,
-            CR_CHARACTER_EDU, CR_CHARACTER_XP,
+            CR_CHARACTER_STAMINA_TIMESTAMP,
+            CR_CHARACTER_XP,
             CR_CHARACTER_JOB_ID, CR_CHARACTER_JOB_HIRED,
             CR_CHARACTER_JOB_LASTPAID,
             CR_CHARACTER_JAIL_TIME
@@ -93,6 +90,21 @@ function cr_login() {
         $character[ 'id' ], cr_meta_type_character, 1,
         array(
             CR_CHARACTER_GYM_ID
+        ) );
+
+    ensure_character_meta_keygroup(
+        $character[ 'id' ], cr_meta_type_character, 10,
+        array(
+            CR_CHARACTER_STR, CR_CHARACTER_DEX, CR_CHARACTER_INT,
+            CR_CHARACTER_CON, CR_CHARACTER_APP, CR_CHARACTER_POW,
+            CR_CHARACTER_EDU
+        ) );
+
+    ensure_character_meta_keygroup(
+        $character[ 'id' ], cr_meta_type_character, 100,
+        array(
+            CR_CHARACTER_HEALTH, CR_CHARACTER_HEALTH_MAX,
+            CR_CHARACTER_STAMINA, CR_CHARACTER_STAMINA_MAX
         ) );
 
     cr_award_salary();
@@ -338,3 +350,31 @@ function cr_regen_stamina() {
 }
 
 add_action( 'character_load', 'cr_regen_stamina' );
+
+function cr_add_buff( $buff_id, $duration ) {
+    global $character;
+
+    if ( ! cr_has_buff( $buff_id ) ) {
+        $buff_time = time() + $duration;
+    } else {
+        $buff_time = intval( character_meta( cr_meta_type_buff, $buff_id ) ) +
+            $duration;
+    }
+
+    ensure_character_meta( $character[ 'id' ], cr_meta_type_buff, $buff_id );
+    update_character_meta( $character[ 'id' ], cr_meta_type_buff, $buff_id,
+        $duration );
+}
+
+function cr_has_buff( $buff_id ) {
+    $buff = character_meta( cr_meta_type_buff, $buff_id );
+
+    if ( FALSE == $buff ) {
+        return FALSE;
+    } else if ( intval( $buff ) <= time() ) {
+        return FALSE;
+    }
+
+    return TRUE;
+}
+
