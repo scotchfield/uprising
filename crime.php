@@ -17,8 +17,8 @@ function cr_crime_content() {
   </div>
 </div>
 <div class="row">
-<p class="lead">To get ahead in this city, sometimes you have to break
-a few laws.</p>
+<p class="lead">The <span class="crimson">Crimson Revolution</span> grow
+stronger each day. Your help is needed to stop them.</p>
 </div>
 <?php
 

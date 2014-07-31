@@ -176,11 +176,14 @@ function cr_career_tick() {
 function cr_accept_career( $args ) {
     global $character;
 
+    $GLOBALS[ 'redirect_header' ] = GAME_URL . '?action=career';
+
     if ( ! isset( $args[ 'career_id' ] ) ) {
         return;
     }
 
-    $job_id = character_meta_int( cr_meta_type_character, CR_CHARACTER_JOB_ID );
+    $job_id = character_meta_int(
+        cr_meta_type_character, CR_CHARACTER_JOB_ID );
 
     $new_job_id = intval( $args[ 'career_id' ] );
     $new_job = get_game_meta( cr_game_meta_jobs, $new_job_id );
@@ -201,6 +204,8 @@ function cr_accept_career( $args ) {
 
     } else if ( 0 != $job_id ) {
 
+//todo: this is causing errors.
+// can't accept a new job if you have a job, for example
         $job = get_game_meta( cr_game_meta_jobs, $job_id );
         $job[ 'meta_value' ] = explode_meta( $job[ 'meta_value' ] );
 
@@ -222,14 +227,18 @@ $custom_setting_map[ 'accept_career' ] = 'cr_accept_career';
 function cr_leave_career( $args ) {
     global $character;
 
-    $job_id = character_meta_int( cr_meta_type_character, CR_CHARACTER_JOB_ID );
+    $GLOBALS[ 'redirect_header' ] = GAME_URL . '?action=career';
+
+    $job_id = character_meta_int(
+        cr_meta_type_character, CR_CHARACTER_JOB_ID );
 
     if ( 0 == $job_id ) {
         return;
     }
 
     if ( ! isset( $args[ 'confirm' ] ) ) {
-        $GLOBALS[ 'redirect_header' ] = GAME_URL . '?leave_confirm';
+        $GLOBALS[ 'redirect_header' ] = GAME_URL .
+            '?action=career&leave_confirm';
         return;
     }
 
@@ -251,7 +260,10 @@ $custom_setting_map[ 'leave_career' ] = 'cr_leave_career';
 function cr_promote_career( $args ) {
     global $character;
 
-    $job_id = character_meta_int( cr_meta_type_character, CR_CHARACTER_JOB_ID );
+    $GLOBALS[ 'redirect_header' ] = GAME_URL . '?action=career';
+
+    $job_id = character_meta_int(
+        cr_meta_type_character, CR_CHARACTER_JOB_ID );
 
     if ( 0 == $job_id ) {
         return;
