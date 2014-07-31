@@ -42,7 +42,7 @@ function cr_profile_content() {
         echo( $job[ 'meta_value' ][ 'title' ] . ' at ' .
               $employer[ 'meta_value' ] );
     } else {
-        echo( '<a href="?action=zone&zone_tag=career">Unemployed</a>' );
+        echo( '<a href="?action=career">Unemployed</a>' );
     }?></dd><?php
     if ( $character[ 'id' ] == 3 ) {
         echo( '<dt>XP Points:</dt><dd>' .
