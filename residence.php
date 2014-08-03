@@ -8,11 +8,12 @@ function cr_residence_content() {
     }
 
 ?>
+
+<div class="row text-right">
+  <h1 class="page_section">Residence</h1>
+</div>
 <div class="row">
-  <div class="col-xs-12">
-    <h2>Residence</h2>
-    <p class="lead">Zone Description.</p>
-  </div>
+  <p class="lead">Zone Description.</p>
 </div>
 <?php
 

@@ -96,6 +96,12 @@ span.crimson {
     color: #dc143c;
 }
 
+h1.page_section {
+    font-family: 'Oswald', sans-serif;
+    font-size: 5em;
+    text-transform: uppercase;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {

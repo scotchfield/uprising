@@ -16,20 +16,8 @@ function cr_career_content() {
             cr_game_meta_employers, $job[ 'meta_value' ][ 'employer' ] );
     }
 ?>
-<div class="row">
-  <div class="col-md-3">
-    <h2>Career</h2>
-  </div>
-  <div class="col-md-9 text-right">
-<?php
-    if ( FALSE == $job ) {
-        echo( '<h2><b>Unemployed</b></h2>' );
-    } else {
-        echo( '<h2><b>' . $job[ 'meta_value' ][ 'title' ] .
-              '</b> at <b>' . $employer[ 'meta_value' ] . '</b></h2>' );
-    }
-?>
-  </div>
+<div class="row text-right">
+  <h1 class="page_section">Career</h1>
 </div>
 <div class="row">
 <p class="lead">One of the easiest ways to make money is to find a reputable

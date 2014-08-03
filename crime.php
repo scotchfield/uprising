@@ -8,13 +8,8 @@ function cr_crime_content() {
     }
 
 ?>
-<div class="row">
-  <div class="col-md-6">
-    <h2>Commit a Crime</h2>
-  </div>
-  <div class="col-md-6 text-right">
-
-  </div>
+<div class="row text-right">
+  <h1 class="page_section">Crime</h1>
 </div>
 <div class="row">
 <p class="lead">The <span class="crimson">Crimson Revolution</span> grow

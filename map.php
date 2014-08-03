@@ -8,7 +8,9 @@ function cr_map_print() {
     }
 
 ?>
-<h3>State of the City</h3>
+<div class="row text-right">
+  <h1 class="page_section">State of the City</h1>
+</div>
 <div class="row">
   <div class="col-md-4">
     <h4>Primary Locations</h4>

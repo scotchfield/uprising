@@ -9,10 +9,9 @@ function cr_inventory_content() {
 
     $item_obj = get_character_items_full( $character[ 'id' ] );
 
-?><div class="row">
-  <div class="col-md-12">
-    <h2>Inventory</h2>
-  </div>
+?>
+<div class="row text-right">
+  <h1 class="page_section">Inventory</h1>
 </div>
 <div class="row">
   <div class="col-md-6">

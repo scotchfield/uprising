@@ -8,13 +8,8 @@ function cr_casino_content() {
     }
 
 ?>
-<div class="row">
-  <div class="col-md-6">
-    <h2>Casino</h2>
-  </div>
-  <div class="col-md-6 text-right">
-
-  </div>
+<div class="row text-right">
+  <h1 class="page_section">Casino</h1>
 </div>
 <div class="row">
 <p class="lead">Feeling lucky?</p>

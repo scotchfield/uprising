@@ -24,14 +24,10 @@ function cr_zone_jail() {
     global $character;
 
 ?>
-<div class="row">
-  <div class="col-md-6">
-    <h2>Jail</h2>
-  </div>
-  <div class="col-md-6 text-right">
-
-  </div>
+<div class="row text-right">
+  <h1 class="page_section">Jail</h1>
 </div>
+
 <div class="row">
 <p class="lead">Home to the poor criminals who reached too far and
 got caught.</p>
@@ -51,11 +47,10 @@ function cr_jail_locked_content() {
     $time_left = character_meta_int(
         cr_meta_type_character, CR_CHARACTER_JAIL_TIME ) - time();
 ?>
-<div class="row">
-  <div class="col-xs-12">
-    <h2>Jail</h2>
-  </div>
+<div class="row text-right">
+  <h1 class="page_section">Jail</h1>
 </div>
+
 <?php
 
     if ( $time_left > 0 ) {

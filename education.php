@@ -8,14 +8,10 @@ function cr_education_content() {
     }
 
 ?>
-<div class="row">
-  <div class="col-md-3">
-    <h2>Education</h2>
-  </div>
-  <div class="col-md-9 text-right">
-
-  </div>
+<div class="row text-right">
+  <h1 class="page_section">Education</h1>
 </div>
+
 <div class="row">
 <p class="lead">Stand on the shoulders of giants. A solid education gives
 you the tools to further your crime goals.</p>
@@ -42,3 +38,15 @@ you the tools to further your crime goals.</p>
 }
 
 add_action( 'do_page_content', 'cr_education_content' );
+
+function cr_get_course( $course_id ) {
+    $course = get_game_meta( cr_game_meta_courses, $course_id );
+
+    if ( FALSE == $course ) {
+        return FALSE;
+    }
+
+    $course[ 'meta_value' ] = explode_meta( $course[ 'meta_value' ] );
+
+    return $course;
+}

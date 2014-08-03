@@ -14,9 +14,13 @@ function cr_profile_content() {
             cr_game_meta_employers, $job[ 'meta_value' ][ 'employer' ] );
     }
 
-?><div class="row">
+?>
+<div class="row text-right">
+  <h1 class="page_section">Profile</h1>
+</div>
+<div class="row">
   <div class="col-md-6">
-    <h2>Profile</h2>
+    <h2>Details</h2>
 
     <dl class="dl-horizontal">
       <dt>Name</dt>

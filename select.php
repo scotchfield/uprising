@@ -25,15 +25,16 @@ function cr_select_print() {
     $char_obj = get_characters_for_user( $user[ 'id' ] );
 ?>
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-2">
     &nbsp;
   </div>
-  <div class="col-md-6">
+  <div class="col-md-8">
 
 <h1 class="text-center">Welcome back,
 <?php echo( $user[ 'user_name' ] ); ?>.</h1>
 
-<h2 class="text-center">Select a character:</h2>
+  <h1 class="page_section">SELECT A CHARACTER</h1>
+<!--<h2 class="text-center">Select a character:</h2>-->
 
 <?php
     if ( count( $char_obj ) == 0 ) {
@@ -62,7 +63,7 @@ function cr_select_print() {
     }
 ?>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-2">
 
   </div>
 </div>

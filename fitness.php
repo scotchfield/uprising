@@ -9,14 +9,10 @@ function cr_fitness_content() {
     }
 
 ?>
-<div class="row">
-  <div class="col-md-3">
-    <h2>Fitness</h2>
-  </div>
-  <div class="col-md-9 text-right">
-
-  </div>
+<div class="row text-right">
+  <h1 class="page_section">Fitness</h1>
 </div>
+
 <div class="row">
 <p class="lead">Physical strength is just as important as mental ability.
 Work out in the city's fitness centers, and boost your combat stats.</p>
