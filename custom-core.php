@@ -306,6 +306,12 @@ function cr_about() {
        return;
     }
 
+?>
+<div class="row text-right">
+  <h1 class="page_section">About</h1>
+</div>
+<?php
+
     echo '<h1>BOB SAGET</h1>';
 }
 
@@ -313,6 +319,12 @@ function cr_contact() {
     if ( strcmp( 'contact', game_get_action() ) ) {
        return;
     }
+
+?>
+<div class="row text-right">
+  <h1 class="page_section">Contact</h1>
+</div>
+<?php
 
     echo '<h1>OH BOB SAGET</h1>';
 }
