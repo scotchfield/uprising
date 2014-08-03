@@ -1,3 +1,17 @@
+<?php
+
+function cr_title_content() {
+    global $character;
+
+    if ( strcmp( 'title', game_get_action() ) ) {
+        return;
+    }
+
+    if ( FALSE != $character ) {
+        return;
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -153,3 +167,8 @@ if ( isset( $_GET[ 'notify' ] ) ) {
 
 </body>
 </html>
+
+<?
+}
+
+add_action( 'do_page_content', 'cr_title_content' );

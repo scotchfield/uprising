@@ -16,12 +16,13 @@ require( GAME_CUSTOM_PATH . 'residence.php' );
 require( GAME_CUSTOM_PATH . 'select.php' );
 require( GAME_CUSTOM_PATH . 'skills.php' );
 require( GAME_CUSTOM_PATH . 'status.php' );
+require( GAME_CUSTOM_PATH . 'title.php' );
 require( GAME_CUSTOM_PATH . 'tutorial.php' );
 require( GAME_CUSTOM_PATH . 'zone.php' );
 
-$custom_start_page = 'title.php';
+//$custom_start_page = 'title.php';
 
-$custom_default_action = 'status';
+//$custom_default_action = 'status';
 
 
 define( 'cr_meta_type_character',    1 );
@@ -64,6 +65,21 @@ define( 'cr_game_meta_crimes',      3 );
 define( 'cr_game_meta_degrees',     4 );
 define( 'cr_game_meta_courses',     5 );
 define( 'cr_game_meta_gyms',        6 );
+
+
+function cr_default_action() {
+    global $user, $character;
+
+    if ( FALSE == $user ) {
+        game_set_action( 'title' );
+    } else if ( FALSE == $character ) {
+        game_set_action( 'select' );
+    } else {
+        game_set_action( 'map' );
+    }
+}
+
+add_action( 'set_default_action', 'cr_default_action' );
 
 
 function cr_login() {
@@ -114,6 +130,10 @@ add_action( 'select_character', 'cr_login' );
 
 function cr_header() {
     global $user, $character;
+
+    if ( ! strcmp( 'title', game_get_action() ) ) {
+        return;
+    }
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -237,6 +257,10 @@ function cr_header() {
 
 function cr_footer() {
     global $character;
+
+    if ( ! strcmp( 'title', game_get_action() ) ) {
+        return;
+    }
 
     if ( FALSE != $character ) {
         echo "      </div>\n";

@@ -1,7 +1,11 @@
 <?php
 
 function cr_select_check() {
-    global $character;
+    global $user, $character;
+
+    if ( FALSE == $user ) {
+        return;
+    }
 
     if ( FALSE == $character ) {
         game_set_action( 'select' );
