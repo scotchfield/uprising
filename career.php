@@ -202,6 +202,8 @@ function cr_accept_career( $args ) {
         update_character_meta( $character[ 'id' ], cr_meta_type_character,
             CR_CHARACTER_JOB_LASTPAID, cr_career_tick() );
 
+        award_achievement( 1 );
+
     } else if ( 0 != $job_id ) {
 
 //todo: this is causing errors.
