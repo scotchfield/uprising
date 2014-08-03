@@ -7,8 +7,6 @@ function cr_profile_content() {
        return;
     }
 
-    ensure_character_achievements();
-
     $job = cr_get_job( character_meta( cr_meta_type_character,
                        CR_CHARACTER_JOB_ID ) );
     if ( FALSE != $job ) {
@@ -92,14 +90,17 @@ function cr_profile_content() {
 
     <h2>Achievements</h2>
 <?php
-    if ( 0 == count( $character[ 'achievements' ] ) ) {
+    if ( ( ! isset( $character[ 'meta' ][ game_meta_type_achievement ] ) ) ||
+         ( 0 == count(
+                    $character[ 'meta' ][ game_meta_type_achievement ] ) ) ) {
         echo( '<h4>None yet!</h4>' );
     } else {
         echo( '<dl class="dl-horizontal">' );
-        foreach ( $character[ 'achievements' ] as $achieve ) {
+        $achieve_obj = get_achievements( $character[ 'id' ] );
+        foreach ( $achieve_obj as $achieve ) {
             echo( '<dt>' . $achieve[ 'achieve_title' ] . '</dt><dd>' .
                   $achieve[ 'achieve_text' ] . '</dd><dd>' .
-                  date( 'F j, Y, g:ia', $achieve[ 'timestamp' ] ) .
+                  date( 'F j, Y, g:ia', $achieve[ 'meta_value' ] ) .
                   '</dd>' );
         }
         echo( '</dl>' );
@@ -171,3 +172,22 @@ function cr_clear_character_meta( $args ) {
 }
 
 $custom_setting_map[ 'clear_character_meta' ] = 'cr_clear_character_meta';
+
+
+function cr_achievement_print( $args ) {
+    global $character;
+
+    if ( ! isset( $args[ 'achievement_id' ] ) ) {
+        return;
+    }
+
+    $achievement = get_achievement( $args[ 'achievement_id' ] );
+
+    update_character_meta( $character[ 'id' ], cr_meta_type_character,
+        CR_CHARACTER_TIP, 'ACHIEVEMENT AWARDED<br>' .
+        $achievement[ 'achieve_title' ] . '</h2><h3>' .
+        $achievement[ 'achieve_text' ] . '</h3>' );
+}
+
+add_action( 'award_achievement', 'cr_achievement_print' );
+
