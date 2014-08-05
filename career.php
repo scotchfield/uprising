@@ -90,12 +90,12 @@ earn additional bonuses, and command more respect.</p>
     }
 ?>
 <div class="row">
-  <h3>Career Paths in Erebus</h3>
+  <h3>Career Paths</h3>
 </div>
 <div class="row">
   <div class="col-md-6">
     <h4>Semantic Code</h4>
-    <p>The leading software development company in Erebus.  You'll
+    <p>The leading software development company in Lancaster.  You'll
         learn a solid set of coding skills that will bring in a comfortable
         income while teaching you a new set of hacking crimes.</p>
     <p><a href="game-setting.php?setting=accept_career&career_id=1">Apply
@@ -192,22 +192,11 @@ function cr_accept_career( $args ) {
 
         award_achievement( 1 );
 
-    } else if ( 0 != $job_id ) {
-
-//todo: this is causing errors.
-// can't accept a new job if you have a job, for example
-        $job = get_game_meta( cr_game_meta_jobs, $job_id );
-        $job[ 'meta_value' ] = explode_meta( $job[ 'meta_value' ] );
-
-        if ( $new_job[ 'meta_value' ][ 'tier' ] ==
-                 $job[ 'meta_value' ][ 'tier' ] + 1 ) {
-            debug_print( 'yes, can accept' );
-        }
-        debug_print( $new_job );
-
     } else {
 
-        debug_print( 'can\'t accept this job' );
+        update_character_meta( $character[ 'id' ], cr_meta_type_character,
+            CR_CHARACTER_TIP, 'You already have a job!<br>If you want ' .
+            'to change careers, you have to leave your old job first.' );
 
     }
 }
@@ -285,7 +274,7 @@ function cr_promote_career( $args ) {
         CR_CHARACTER_JOB_HIRED, time() );
     update_character_meta( $character[ 'id' ], cr_meta_type_character,
         CR_CHARACTER_TIP, 'The promotion is yours, you\'ve earned it! ' .
-        'As of tomorrow, your new job title is <b>' .
+        'As of now, your new job title is <b>' .
         $promote_job[ 'meta_value' ][ 'title' ] . '</b>!' );
 }
 

@@ -89,7 +89,7 @@ if ( isset( $_GET[ 'notify' ] ) ) {
 
     <div class="col-md-8">
       <h3>A City Under Siege!</h3>
-      <p>The city of Erebus has slowly descended into the hands of the
+      <p>The city of Lancaster has slowly descended into the hands of the
         crooked. A powerful gang known as the XY have
         influence over everyone with power, including the
         politicians, the police force, and the large corporations in town.
