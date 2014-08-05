@@ -102,9 +102,10 @@ function cr_profile_content() {
         echo( '<dl class="dl-horizontal">' );
         $achieve_obj = get_achievements( $character[ 'id' ] );
         foreach ( $achieve_obj as $achieve ) {
-            echo( '<dt>' . $achieve[ 'achieve_title' ] . '</dt><dd>' .
-                  $achieve[ 'achieve_text' ] . '</dd><dd>' .
-                  date( 'F j, Y, g:ia', $achieve[ 'meta_value' ] ) .
+            $meta = explode_meta( $achieve[ 'meta_value' ] );
+            echo( '<dt>' . $meta[ 'title' ] . '</dt><dd>' .
+                  $meta[ 'text' ] . '</dd><dd>' .
+                  date( 'F j, Y, g:ia', $achieve[ 'timestamp' ] ) .
                   '</dd>' );
         }
         echo( '</dl>' );
