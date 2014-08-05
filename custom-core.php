@@ -143,8 +143,8 @@ function cr_header() {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo( GAME_NAME ); ?> (<?php echo( game_get_action() );
         ?>)</title>
-    <link rel="stylesheet" href="<?php echo( GAME_URL );
-        ?>style/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo( GAME_CUSTOM_STYLE_URL );
+        ?>bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo( GAME_CUSTOM_STYLE_URL );
         ?>elysian.css">
     <link href="http://fonts.googleapis.com/css?family=Raleway:400,500"
@@ -270,9 +270,12 @@ function cr_footer() {
 ?>
     </div>
   </div>
-  <script src="<?php echo( GAME_URL ); ?>style/popup.js"></script>
-  <script src="<?php echo( GAME_URL ); ?>style/jquery.min.js"></script>
-  <script src="<?php echo( GAME_URL ); ?>style/bootstrap.min.js"></script>
+  <script src="<?php echo( GAME_CUSTOM_STYLE_URL );
+      ?>popup.js"></script>
+  <script src="<?php echo( GAME_CUSTOM_STYLE_URL );
+      ?>jquery.min.js"></script>
+  <script src="<?php echo( GAME_CUSTOM_STYLE_URL );
+      ?>bootstrap.min.js"></script>
   </body>
 </html>
 <?php

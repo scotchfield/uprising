@@ -19,8 +19,8 @@ function cr_title_content() {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo( GAME_NAME ); ?></title>
-    <link rel="stylesheet" href="<?php echo( GAME_URL );
-        ?>style/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo( GAME_CUSTOM_STYLE_URL );
+        ?>bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo( GAME_CUSTOM_STYLE_URL );
         ?>elysian.css">
     <link href="http://fonts.googleapis.com/css?family=Raleway:400,500"
@@ -162,8 +162,8 @@ if ( isset( $_GET[ 'notify' ] ) ) {
 
 </div>
 
-<script src="<?php echo GAME_URL; ?>style/jquery.min.js"></script>
-<script src="<?php echo GAME_URL; ?>style/bootstrap.min.js"></script>
+<script src="<?php echo GAME_CUSTOM_STYLE_URL; ?>jquery.min.js"></script>
+<script src="<?php echo GAME_CUSTOM_STYLE_URL; ?>bootstrap.min.js"></script>
 
 </body>
 </html>
