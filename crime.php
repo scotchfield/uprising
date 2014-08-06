@@ -18,23 +18,46 @@ stronger each day. Your help is needed to stop them.</p>
 <?php
 
     $crime_obj = get_game_meta_keytype( cr_game_meta_crimes );
+    $state_obj = get_game_meta_keytype( cr_game_meta_state );
 
     foreach ( $crime_obj as $crime ) {
-        $crime[ 'meta_value' ] = explode_meta( $crime[ 'meta_value' ] );
-        if ( ( isset( $crime[ 'meta_value' ][ 'xp_needed' ] ) ) &&
-             ( floatval( $crime[ 'meta_value' ][ 'xp_needed' ] ) >
+        $meta = explode_meta( $crime[ 'meta_value' ] );
+        if ( ( isset( $meta[ 'xp_needed' ] ) ) &&
+             ( floatval( $meta[ 'xp_needed' ] ) >
                character_meta_float( cr_meta_type_character,
                    CR_CHARACTER_XP ) ) ) {
             continue;
         }
+        if ( ! cr_crime_min_gamestate( $meta ) ) {
+            continue;
+        }
         echo( '<h3><a href="game-setting.php?setting=commit_crime&id=' .
-              $crime[ 'meta_key' ] . '">' . $crime[ 'meta_value' ][ 'title' ] .
-              '</a></h3>' );
+              $crime[ 'meta_key' ] . '">' . $meta[ 'title' ] .
+              '</a>' );
+        if ( isset( $meta[ 'min_gamestate' ] ) ) {
+            echo( ' (' .
+                  $state_obj[ $meta[ 'min_gamestate' ] ][ 'meta_value' ] .
+                  ' remaining)' );
+        }
+        echo( '</h3>' );
     }
 
 }
 
 add_action( 'do_page_content', 'cr_crime_content' );
+
+function cr_crime_min_gamestate( $meta ) {
+    if ( ! isset( $meta[ 'min_gamestate' ] ) ) {
+        return TRUE;
+    }
+
+    $game_meta = get_game_meta( cr_game_meta_state, $meta[ 'min_gamestate' ] );
+    if ( intval( $game_meta[ 'meta_value' ] ) <= 0 ) {
+        return FALSE;
+    }
+
+    return TRUE;
+}
 
 function cr_commit_crime( $args ) {
     global $character;
@@ -42,6 +65,14 @@ function cr_commit_crime( $args ) {
     $GLOBALS[ 'redirect_header' ] = GAME_URL . '?action=crime';
 
     if ( ! isset( $args[ 'id' ] ) ) {
+        return;
+    }
+
+    $buff_time = check_buff( $args[ 'id' ] );
+    if ( $buff_time > 0 ) {
+        update_character_meta( $character[ 'id' ], cr_meta_type_character,
+            CR_CHARACTER_TIP, 'You\'re still undercover from the last ' .
+            'crime! Try again in ' . time_round( $buff_time ) . '.' );
         return;
     }
 
@@ -77,6 +108,13 @@ function cr_commit_crime( $args ) {
         update_character_meta( $character[ 'id' ], cr_meta_type_character,
             CR_CHARACTER_TIP, 'You\'re too tired to pull off that crime ' .
             'right now. Try again when you have more stamina!' );
+
+        return;
+    }
+
+    if ( ! cr_crime_min_gamestate( $meta ) ) {
+        update_character_meta( $character[ 'id' ], cr_meta_type_character,
+            CR_CHARACTER_TIP, 'That crime isn\'t available now!' );
 
         return;
     }
@@ -123,6 +161,14 @@ function cr_commit_crime( $args ) {
 
         update_character_meta( $character[ 'id' ], cr_meta_type_character,
             CR_CHARACTER_TIP, join( ' ', $tip_obj ) );
+
+        if ( isset( $meta[ 'min_gamestate' ] ) ) {
+            $game_meta = get_game_meta(
+                cr_game_meta_state, $meta[ 'min_gamestate' ] );
+            $new_value = intval( $game_meta[ 'meta_value' ] ) - 1;
+            update_game_meta( cr_game_meta_state, $meta[ 'min_gamestate' ],
+                $new_value );
+        }
     } else {
         update_character_meta( $character[ 'id' ], cr_meta_type_character,
             CR_CHARACTER_TIP, 'You try to commit the crime, but you\'re ' .
@@ -135,6 +181,8 @@ function cr_commit_crime( $args ) {
         CR_CHARACTER_STAMINA ) - $meta[ 'stamina' ];
     update_character_meta( $character[ 'id' ], cr_meta_type_character,
         CR_CHARACTER_STAMINA, $stamina );
+
+    award_buff( 1, 10 );
 }
 
 $custom_setting_map[ 'commit_crime' ] = 'cr_commit_crime';

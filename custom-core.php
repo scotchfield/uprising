@@ -65,6 +65,9 @@ define( 'cr_game_meta_crimes',      3 );
 define( 'cr_game_meta_degrees',     4 );
 define( 'cr_game_meta_courses',     5 );
 define( 'cr_game_meta_gyms',        6 );
+define( 'cr_game_meta_state',       7 );
+
+define( 'CR_GAME_FOES_MALL',        1 );
 
 
 function cr_default_action() {
@@ -134,6 +137,8 @@ function cr_header() {
     if ( ! strcmp( 'title', game_get_action() ) ) {
         return;
     }
+
+    update_buffs();
 
 ?><!DOCTYPE html>
 <html lang="en">
