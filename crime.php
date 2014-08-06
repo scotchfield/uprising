@@ -173,6 +173,8 @@ function cr_commit_crime( $args ) {
         update_character_meta( $character[ 'id' ], cr_meta_type_character,
             CR_CHARACTER_TIP, 'You try to commit the crime, but you\'re ' .
             'stopped and thrown in jail!' );
+        ensure_character_meta( $character[ 'id' ], cr_meta_type_character,
+            CR_CHARACTER_JAIL_TIME );
         update_character_meta( $character[ 'id' ], cr_meta_type_character,
             CR_CHARACTER_JAIL_TIME, time() + 300 );
     }
