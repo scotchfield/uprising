@@ -22,15 +22,14 @@ you the tools to further your crime goals.</p>
     $course_obj = get_game_meta_keytype( cr_game_meta_courses );
 
     foreach ( $degree_obj as $degree ) {
-        $degree[ 'meta_value' ] = explode_meta( $degree[ 'meta_value' ] );
-        echo( '<h3>' . $degree[ 'meta_value' ][ 'title' ] . '</h3>' );
+        $degree_meta = json_decode( $degree[ 'meta_value' ], TRUE );
+        echo( '<h3>' . $degree_meta[ 'title' ] . '</h3>' );
         echo( '<ul>' );
         foreach ( $course_obj as $course ) {
-            $course[ 'meta_value' ] = explode_meta( $course[ 'meta_value' ] );
+            $course_meta = json_decode( $course[ 'meta_value' ], TRUE );
 
-            if ( $course[ 'meta_value' ][ 'degree' ] ==
-                 $degree[ 'meta_key' ] ) {
-                echo( '<li>' . $course[ 'meta_value' ][ 'title' ] . '</li>' );
+            if ( $course_meta[ 'degree' ] == $degree[ 'meta_key' ] ) {
+                echo( '<li>' . $course_meta[ 'title' ] . '</li>' );
             }
         }
         echo( '</ul>' );
@@ -46,7 +45,7 @@ function cr_get_course( $course_id ) {
         return FALSE;
     }
 
-    $course[ 'meta_value' ] = explode_meta( $course[ 'meta_value' ] );
+    $course_meta = json_decode( $course[ 'meta_value' ], TRUE );
 
     return $course;
 }
