@@ -21,7 +21,7 @@ stronger each day. Your help is needed to stop them.</p>
     $state_obj = get_game_meta_keytype( cr_game_meta_state );
 
     foreach ( $crime_obj as $crime ) {
-        $meta = explode_meta( $crime[ 'meta_value' ] );
+        $meta = json_decode( $crime[ 'meta_value' ], TRUE );
         if ( ( isset( $meta[ 'xp_needed' ] ) ) &&
              ( floatval( $meta[ 'xp_needed' ] ) >
                character_meta_float( cr_meta_type_character,
@@ -82,7 +82,7 @@ function cr_commit_crime( $args ) {
         return;
     }
 
-    $meta = explode_meta( $crime[ 'meta_value' ] );
+    $meta = json_decode( $crime[ 'meta_value' ], TRUE );
 
     if ( ! isset( $meta[ 'stamina' ] ) ) {
         return;

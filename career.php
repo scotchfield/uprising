@@ -34,8 +34,8 @@ earn additional bonuses, and command more respect.</p>
         $job_obj = get_game_meta_keytype( cr_game_meta_jobs );
 
         foreach ( $job_obj as $k => $job ) {
-            $job_obj[ $k ][ 'meta_value' ] = explode_meta(
-                $job[ 'meta_value' ] );
+            $job_obj[ $k ][ 'meta_value' ] = json_decode(
+                $job[ 'meta_value' ], TRUE );
         }
 
         foreach ( $employer_obj as $e ) {
@@ -122,7 +122,7 @@ function cr_get_job( $job_id ) {
         return FALSE;
     }
 
-    $job[ 'meta_value' ] = explode_meta( $job[ 'meta_value' ] );
+    $job[ 'meta_value' ] = json_decode( $job[ 'meta_value' ], TRUE );
 
     return $job;
 }
@@ -179,7 +179,7 @@ function cr_accept_career( $args ) {
         return;
     }
 
-    $new_job[ 'meta_value' ] = explode_meta( $new_job[ 'meta_value' ] );
+    $new_job[ 'meta_value' ] = json_decode( $new_job[ 'meta_value' ], TRUE );
 
     if ( ( 0 == $job_id ) && ( $new_job[ 'meta_value' ][ 'tier' ] == 1 ) ) {
 
