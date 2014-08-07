@@ -22,7 +22,7 @@ Work out in the city's fitness centers, and boost your combat stats.</p>
     $gym_id = character_meta_int( cr_meta_type_character, CR_CHARACTER_GYM_ID );
 
     $gym = get_game_meta( cr_game_meta_gyms, $gym_id );
-    $gym[ 'meta_value' ] = explode_meta( $gym[ 'meta_value' ] );
+    $gym_meta = json_decode( $gym[ 'meta_value' ], TRUE );
 
 ?>
     <h3><a href="game-setting.php?setting=fitness_train&train=str">Train
@@ -48,7 +48,7 @@ function cr_fitness_train( $args ) {
     $gym_id = character_meta_int( cr_meta_type_character, CR_CHARACTER_GYM_ID );
 
     $gym = get_game_meta( cr_game_meta_gyms, $gym_id );
-    $gym[ 'meta_value' ] = explode_meta( $gym[ 'meta_value' ] );
+    $gym_meta = json_decode( $gym[ 'meta_value' ], TRUE );
 
     $train_obj = array(
         'str' => CR_CHARACTER_STR,
@@ -72,9 +72,7 @@ function cr_fitness_train( $args ) {
         return;
     }
 
-    $stat = rand_float(
-        $gym[ 'meta_value' ][ 'stat_min' ],
-        $gym[ 'meta_value' ][ 'stat_max' ] );
+    $stat = rand_float( $gym_meta[ 'stat_min' ], $gym_meta[ 'stat_max' ] );
 
     $new_stat = $stat + character_meta_float( cr_meta_type_character,
         $train_obj[ $args[ 'train' ] ] );
