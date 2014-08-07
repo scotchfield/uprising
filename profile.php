@@ -102,7 +102,7 @@ function cr_profile_content() {
         echo( '<dl class="dl-horizontal">' );
         $achieve_obj = get_achievements( $character[ 'id' ] );
         foreach ( $achieve_obj as $achieve ) {
-            $meta = explode_meta( $achieve[ 'meta_value' ] );
+            $meta = json_decode( $achieve[ 'meta_value' ], TRUE );
             echo( '<dt>' . $meta[ 'title' ] . '</dt><dd>' .
                   $meta[ 'text' ] . '</dd><dd>' .
                   date( 'F j, Y, g:ia', $achieve[ 'timestamp' ] ) .
@@ -187,11 +187,11 @@ function cr_achievement_print( $args ) {
     }
 
     $achievement = get_achievement( $args[ 'achievement_id' ] );
+    $meta = json_decode( $achievement[ 'meta_value' ], TRUE );
 
     update_character_meta( $character[ 'id' ], cr_meta_type_character,
         CR_CHARACTER_TIP, 'ACHIEVEMENT AWARDED<br>' .
-        $achievement[ 'achieve_title' ] . '</h2><h3>' .
-        $achievement[ 'achieve_text' ] . '</h3>' );
+        $meta[ 'title' ] . '<br>' . $meta[ 'text' ] );
 }
 
 add_action( 'award_achievement', 'cr_achievement_print' );
