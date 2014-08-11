@@ -25,49 +25,51 @@ require( GAME_CUSTOM_PATH . 'zone.php' );
 //$custom_default_action = 'status';
 
 
-define( 'cr_meta_type_character',    1 );
-define( 'cr_meta_type_inventory',    2 );
-define( 'cr_meta_type_buff',         3 );
+define( 'cr_meta_type_character',            1 );
+define( 'cr_meta_type_inventory',            2 );
+define( 'cr_meta_type_buff',                 3 );
 
-define( 'CR_TUTORIAL_STATUS',     1 );
-define( 'CR_CHARACTER_NAME',      2 );
-define( 'CR_CHARACTER_MONEY',     3 );
-define( 'CR_CHARACTER_TIP',       4 );
-define( 'CR_CURRENT_ZONE',        5 );
+define( 'CR_TUTORIAL_STATUS',                1 );
+define( 'CR_CHARACTER_NAME',                 2 );
+define( 'CR_CHARACTER_MONEY',                3 );
+define( 'CR_CHARACTER_TIP',                  4 );
+define( 'CR_CURRENT_ZONE',                   5 );
 
-define( 'CR_CHARACTER_HEALTH',         50 );
-define( 'CR_CHARACTER_HEALTH_MAX',     51 );
+define( 'CR_CURRENT_CITYAREA',              10 );
+
+define( 'CR_CHARACTER_HEALTH',              50 );
+define( 'CR_CHARACTER_HEALTH_MAX',          51 );
 
 define( 'CR_CHARACTER_STAMINA',             60 );
 define( 'CR_CHARACTER_STAMINA_TIMESTAMP',   61 );
 define( 'CR_CHARACTER_STAMINA_MAX',         62 );
 
-define( 'CR_CHARACTER_STR',       100 );
-define( 'CR_CHARACTER_DEX',       101 );
-define( 'CR_CHARACTER_INT',       102 );
-define( 'CR_CHARACTER_CON',       103 );
-define( 'CR_CHARACTER_APP',       104 );
-define( 'CR_CHARACTER_POW',       105 );
-define( 'CR_CHARACTER_EDU',       106 );
-define( 'CR_CHARACTER_XP',        107 );
+define( 'CR_CHARACTER_STR',                100 );
+define( 'CR_CHARACTER_DEX',                101 );
+define( 'CR_CHARACTER_INT',                102 );
+define( 'CR_CHARACTER_CON',                103 );
+define( 'CR_CHARACTER_APP',                104 );
+define( 'CR_CHARACTER_POW',                105 );
+define( 'CR_CHARACTER_EDU',                106 );
+define( 'CR_CHARACTER_XP',                 107 );
 
-define( 'CR_CHARACTER_JOB_ID',         150 );
-define( 'CR_CHARACTER_JOB_HIRED',      151 );
-define( 'CR_CHARACTER_JOB_LASTPAID',   152 );
+define( 'CR_CHARACTER_JOB_ID',             150 );
+define( 'CR_CHARACTER_JOB_HIRED',          151 );
+define( 'CR_CHARACTER_JOB_LASTPAID',       152 );
 
-define( 'CR_CHARACTER_GYM_ID',         200 );
+define( 'CR_CHARACTER_GYM_ID',             200 );
 
-define( 'CR_CHARACTER_JAIL_TIME',      250 );
+define( 'CR_CHARACTER_JAIL_TIME',          250 );
 
-define( 'cr_game_meta_employers',   1 );
-define( 'cr_game_meta_jobs',        2 );
-define( 'cr_game_meta_crimes',      3 );
-define( 'cr_game_meta_degrees',     4 );
-define( 'cr_game_meta_courses',     5 );
-define( 'cr_game_meta_gyms',        6 );
-define( 'cr_game_meta_state',       7 );
+define( 'cr_game_meta_employers',            1 );
+define( 'cr_game_meta_jobs',                 2 );
+define( 'cr_game_meta_crimes',               3 );
+define( 'cr_game_meta_degrees',              4 );
+define( 'cr_game_meta_courses',              5 );
+define( 'cr_game_meta_gyms',                 6 );
+define( 'cr_game_meta_state',                7 );
 
-define( 'CR_GAME_FOES_MALL',        1 );
+define( 'CR_GAME_FOES_MALL',                 1 );
 
 
 function cr_default_action() {
@@ -108,7 +110,7 @@ function cr_login() {
     ensure_character_meta_keygroup(
         $character[ 'id' ], cr_meta_type_character, 1,
         array(
-            CR_CHARACTER_GYM_ID
+            CR_CHARACTER_GYM_ID, CR_CURRENT_CITYAREA
         ) );
 
     ensure_character_meta_keygroup(
